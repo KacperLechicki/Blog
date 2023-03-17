@@ -1,0 +1,72 @@
+:host {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 85px;
+  background: none;
+  color: whitesmoke;
+  z-index: 100;
+
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 10px 0 5px;
+
+    .logo {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+
+      &__logo {
+        margin-right: 3px;
+        width: 40px;
+      }
+
+      &__name {
+        margin-bottom: 0;
+        font-size: 2rem;
+        letter-spacing: 0.4px;
+        background-clip: text;
+        background-image: linear-gradient(
+          to right,
+          hsl(219, 50%, 27%),
+          hsl(219, 46%, 39%),
+          hsl(219, 61%, 56%),
+          hsl(219, 45%, 35%)
+        );
+        -webkit-text-stroke-color: transparent;
+        -webkit-text-stroke-width: calc(1em / 9);
+      }
+    }
+
+    .right {
+      display: flex;
+      align-items: center;
+
+      h3 {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  :host {
+    .nav {
+      .logo {
+        &__logo {
+          margin-right: 7px;
+          width: 40px;
+        }
+
+        &__name {
+          font-size: 2.4rem;
+        }
+      }
+    }
+  }
+}
