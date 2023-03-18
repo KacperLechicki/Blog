@@ -10,6 +10,8 @@ import { HeaderComponent } from './layouts/header/header.component';
 import { HomeComponent } from './layouts/home/home.component';
 import { PostComponent } from './layouts/post/post.component';
 
+import { NgxLoadingModule } from "ngx-loading";
+
 @NgModule({
   declarations: [AppComponent, HeaderComponent, HomeComponent, PostComponent],
   imports: [
@@ -17,8 +19,9 @@ import { PostComponent } from './layouts/post/post.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatButtonModule,
+    NgxLoadingModule.forRoot({}),
   ],
-  providers: [],
+  providers: [AppComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
