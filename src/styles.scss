@@ -8,13 +8,12 @@
 }
 
 html {
-  min-height: 100vh;
   font-size: 10px;
   scroll-behavior: smooth;
 }
 
 body {
-  min-height: 100vh;
+  min-height: 100%;
   font-family: "Montserrat", sans-serif;
   font-size: 1.6rem;
   color: whitesmoke;
@@ -35,7 +34,29 @@ body {
   letter-spacing: 0.7px !important;
   color: #030303 !important;
   border: 1px solid #111111ba !important;
+  border-radius: 8px !important;
   transition: background-color 0.3s;
+}
+
+mat-chip-option {
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 1.6rem !important;
+  border: 1px solid rgba(0, 0, 0, 0.423) !important;
+  border-radius: 8px !important;
+}
+
+.mat-mdc-standard-chip:not(.mdc-evolution-chip--disabled)
+  .mdc-evolution-chip__text-label {
+  color: black !important;
+  background: none !important;
+}
+
+.mdc-evolution-chip__checkmark-svg {
+  color: black !important;
+}
+
+.mat-mdc-standard-chip.mat-warn.mat-mdc-chip-selected {
+  background-color: hsla(224, 67%, 63%, 0.734) !important;
 }
 
 //----------------------------------------------------------------

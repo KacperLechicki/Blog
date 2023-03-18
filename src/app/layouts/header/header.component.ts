@@ -20,7 +20,9 @@ export class HeaderComponent {
           window.scrollTo(0, 0);
           hostElement.style.background = 'none';
         } else {
-          hostElement.style.backgroundColor = 'rgba(0, 0, 0, 0.3)';
+          setTimeout(() => {
+            hostElement.style.backgroundColor = 'rgba(5, 5, 5, 0.5)';
+          }, 1000);
         }
       }
     });
