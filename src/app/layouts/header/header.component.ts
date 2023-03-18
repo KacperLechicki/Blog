@@ -1,10 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
+  isLandingPage: boolean = false;
 
+  constructor(private router: Router, private elRef: ElementRef) {}
+
+  ngOnInit() {
+    const hostElement = this.elRef.nativeElement;
+
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        if (event.url == '/') {
+          window.scrollTo(0, 0);
+          hostElement.style.background = 'none';
+        } else {
+          hostElement.style.backgroundColor = 'rgba(0, 0, 0, 0.3)';
+        }
+      }
+    });
+  }
 }

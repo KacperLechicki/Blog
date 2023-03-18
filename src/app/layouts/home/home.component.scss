@@ -38,11 +38,49 @@
   }
 }
 
+@keyframes rotate3 {
+  0% {
+    transform: rotate(0deg);
+    transform: translateY(0px);
+    transform: scale(1);
+    border-radius: 65% 87% 48% 52% / 64% 54% 49% 80%;
+  }
+
+  50% {
+    border-radius: 52% 82% 61% 70% / 96% 42% 74% 92%;
+  }
+
+  100% {
+    transform: translateY(550px);
+    transform: rotate(360deg);
+    transform: scale(1.1);
+    border-radius: 52% 48% 55% 87% / 72% 57% 43% 85%;
+  }
+}
+
+@keyframes rotate4 {
+  0% {
+    transform: rotate(0deg);
+    transform: translateY(0px);
+    transform: scale(1);
+    border-radius: 45% 53% 82% 71% / 54% 84% 79% 48%;
+  }
+
+  50% {
+    border-radius: 72% 42% 91% 57% / 48% 83% 62% 73%;
+  }
+
+  100% {
+    transform: translateY(250px);
+    transform: rotate(360deg);
+    transform: scale(0.97);
+    border-radius: 82% 73% 91% 73% / 68% 49% 73% 57%;
+  }
+}
+
 @mixin gradient {
-  position: absolute;
   width: var(--size);
   height: var(--size);
-  filter: blur(calc(var(--size) / 12));
   border-radius: 30% 70% 15% 30% / 70% 25% 85% 80%;
 }
 //----------------------------------------------------------------
@@ -73,28 +111,71 @@ button {
   z-index: 10;
 }
 
+button:hover + .gradient,
+button:hover + .gradient2 {
+  background-color: hsla(224, 67%, 63%, 0.329);
+}
+
 .gradient {
   @include gradient;
+  position: absolute;
   --size: 220px;
   --speed: 6s;
   --easing: cubic-bezier(0.8, 0.2, 0.2, 0.8);
+  filter: blur(calc(var(--size) / 12));
   animation: rotate var(--speed) var(--easing) alternate infinite;
   background-image: linear-gradient(
     hsla(224, 82%, 57%, 0.551),
     hsla(233, 82%, 57%, 0.648)
   );
+  transition: background-color 1s cubic-bezier(0.445, 0.05, 0.55, 0.95);
   z-index: 5;
 }
 
 .gradient2 {
   @include gradient;
+  position: absolute;
   --size: 215px;
   --speed: 4s;
   --easing: cubic-bezier(0.4, 0.5, 0.4, 0.5);
+  filter: blur(calc(var(--size) / 12));
   animation: rotate2 var(--speed) var(--easing) alternate infinite;
   background-image: linear-gradient(
-    hsla(212, 69%, 42%, 0.85),
+    hsla(212, 71%, 30%, 0.85),
     hsl(219, 65%, 35%)
+  );
+  transition: background-color 1s cubic-bezier(0.215, 0.610, 0.355, 1);
+}
+
+.gradient3 {
+  @include gradient;
+  position: relative;
+  right: 340px;
+  top: 170px;
+  --size: 135px;
+  --speed: 5s;
+  --easing: cubic-bezier(0.6, 0.3, 0.1, 0.8);
+  filter: blur(calc(var(--size) / 4));
+  animation: rotate3 var(--speed) var(--easing) alternate infinite;
+  background-image: linear-gradient(
+    hsla(233, 82%, 57%, 0.648),
+    hsl(219, 46%, 47%)
+  );
+}
+
+.gradient4 {
+  @include gradient;
+  position: relative;
+  left: 385px;
+  bottom: 170px;
+  --size: 205px;
+  --speed: 6s;
+  --easing: cubic-bezier(0.4, 0.5, 0.4, 0.5);
+  filter: blur(calc(var(--size) / 8));
+  animation: rotate4 var(--speed) var(--easing) alternate infinite;
+  background-image: linear-gradient(
+    hsla(233, 49%, 46%, 0.648),
+    hsl(219, 73%, 27%)
   );
 }
 
@@ -104,10 +185,10 @@ button {
 
 @media (min-width: 720px) {
   .gradient {
-    --size: 450px;
+    --size: 420px;
   }
 
   .gradient2 {
-    --size: 350px;
+    --size: 320px;
   }
 }
