@@ -3,11 +3,11 @@
     transform: rotate(0deg);
     transform: translateY(0px);
     transform: scale(1);
-    border-radius: 44% 70% 50% 47% / 70% 43% 85% 80%;
+    border-radius: 24% 70% 10% 47% / 70% 33% 85% 10%;
   }
 
   50% {
-    border-radius: 92% 52% 61% 80% / 56% 72% 74% 42%;
+    border-radius: 32% 22% 61% 10% / 56% 22% 74% 12%;
   }
 
   100% {
@@ -41,17 +41,18 @@
 @keyframes rotate3 {
   0% {
     transform: rotate(0deg);
-    transform: translateY(0px);
     transform: scale(1);
     border-radius: 65% 87% 48% 52% / 64% 54% 49% 80%;
   }
 
   50% {
+    right: 170px;
     border-radius: 52% 82% 61% 70% / 96% 42% 74% 92%;
   }
 
   100% {
-    transform: translateY(550px);
+    right: 150px;
+    top: -150px;
     transform: rotate(360deg);
     transform: scale(1.1);
     border-radius: 52% 48% 55% 87% / 72% 57% 43% 85%;
@@ -67,10 +68,13 @@
   }
 
   50% {
+    left: 205px;
     border-radius: 72% 42% 91% 57% / 48% 83% 62% 73%;
   }
 
   100% {
+    left: 185px;
+    bottom: -150px;
     transform: translateY(250px);
     transform: rotate(360deg);
     transform: scale(0.97);
@@ -108,14 +112,16 @@ button {
 }
 
 button:hover + .gradient,
-button:hover + .gradient2 {
+button:hover + .gradient2,
+button:hover + .gradient3,
+button:hover + .gradient4 {
   background-color: hsla(224, 67%, 63%, 0.329);
 }
 
 .gradient {
   @include gradient;
   position: absolute;
-  --size: 220px;
+  --size: 230px;
   --speed: 6s;
   --easing: cubic-bezier(0.8, 0.2, 0.2, 0.8);
   filter: blur(calc(var(--size) / 12));
@@ -131,7 +137,7 @@ button:hover + .gradient2 {
 .gradient2 {
   @include gradient;
   position: absolute;
-  --size: 215px;
+  --size: 225px;
   --speed: 4s;
   --easing: cubic-bezier(0.4, 0.5, 0.4, 0.5);
   filter: blur(calc(var(--size) / 12));
@@ -140,51 +146,65 @@ button:hover + .gradient2 {
     hsla(212, 71%, 30%, 0.85),
     hsl(219, 65%, 35%)
   );
-  transition: background-color 1s cubic-bezier(0.215, 0.610, 0.355, 1);
+  transition: background-color 1s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
 .gradient3 {
   @include gradient;
   position: relative;
-  right: 340px;
+  right: 150px;
   top: 170px;
-  --size: 135px;
-  --speed: 5s;
-  --easing: cubic-bezier(0.6, 0.3, 0.1, 0.8);
+  --size: 75px;
+  --speed: 25s;
+  --easing: cubic-bezier(0.6, 0.4, 0.5, 0.8);
   filter: blur(calc(var(--size) / 4));
   animation: rotate3 var(--speed) var(--easing) alternate infinite;
   background-image: linear-gradient(
     hsla(233, 82%, 57%, 0.648),
     hsl(219, 46%, 47%)
   );
+  transition: background-color 1s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
 .gradient4 {
   @include gradient;
   position: relative;
-  left: 385px;
+  left: 185px;
   bottom: 170px;
-  --size: 205px;
-  --speed: 6s;
-  --easing: cubic-bezier(0.4, 0.5, 0.4, 0.5);
+  --size: 105px;
+  --speed: 25s;
+  --easing: cubic-bezier(0.7, 0.5, 0.6, 0.5);
   filter: blur(calc(var(--size) / 8));
   animation: rotate4 var(--speed) var(--easing) alternate infinite;
   background-image: linear-gradient(
     hsla(233, 49%, 46%, 0.648),
     hsl(219, 73%, 27%)
   );
+  transition: background-color 1s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
 //----------------------------------------------------------------
 //----------------------------------------------------------------
 //----------------------------------------------------------------
 
-@media (min-width: 720px) {
+@media (min-width: 770px) {
   .gradient {
     --size: 420px;
   }
 
   .gradient2 {
     --size: 320px;
+  }
+
+  .gradient3 {
+    --size: 135px;
+    right: 380px;
+    top: 170px;
+  }
+
+  .gradient4 {
+    --size: 205px;
+    left: 435px;
+    bottom: 170px;
   }
 }
