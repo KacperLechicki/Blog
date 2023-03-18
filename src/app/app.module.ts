@@ -19,7 +19,11 @@ import { NgxLoadingModule } from "ngx-loading";
     AppRoutingModule,
     BrowserAnimationsModule,
     MatButtonModule,
-    NgxLoadingModule.forRoot({}),
+    NgxLoadingModule.forRoot({
+      primaryColour: "hsl(224, 67%, 63%)",
+      secondaryColour: "hsl(224, 67%, 63%)",
+      tertiaryColour: "hsl(224, 67%, 63%)",
+    }),
   ],
   providers: [AppComponent],
   bootstrap: [AppComponent],
