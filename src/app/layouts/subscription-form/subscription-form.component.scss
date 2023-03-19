@@ -1,0 +1,24 @@
+:host {
+  margin-top: 50px;
+
+  .subscription-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+
+    h3 {
+      font-weight: bold;
+    }
+
+    small {
+      margin-bottom: 20px;
+      font-weight: lighter;
+    }
+
+    mat-form-field {
+      width: 100%;
+    }
+  }
+}

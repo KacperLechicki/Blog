@@ -21,7 +21,7 @@ export class HeaderComponent {
           hostElement.style.background = 'none';
         } else {
           setTimeout(() => {
-            hostElement.style.backgroundColor = 'rgba(5, 5, 5, 0.5)';
+            hostElement.style.backgroundColor = 'rgba(5, 5, 5, 0.85)';
           }, 1000);
         }
       }
