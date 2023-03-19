@@ -12,4 +12,8 @@ export class SinglePostComponent {
     //Add 'implements OnInit' to the class.
     window.scrollTo(0, 0);
   }
+
+  moveUp(): void {
+    window.scrollTo(0, 0);
+  }
 }

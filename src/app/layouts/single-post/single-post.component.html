@@ -1,4 +1,6 @@
 <div class="container">
+  <button class="sub_btn" [routerLink]="['/posts']" routerLinkActive="router-link-active"
+    mat-stroked-button><mat-icon>arrow_back</mat-icon>Back to List</button>
   <div class="row">
     <div class="col-xl-9 col-md-12">
       <div class="card">
@@ -36,7 +38,6 @@
       </div>
       <app-comment-form></app-comment-form>
       <app-comment-list></app-comment-list>
-
     </div>
     <div class="col-xl-3">
       <div class="cards">
@@ -45,6 +46,9 @@
         <app-post-card></app-post-card>
       </div>
     </div>
+    <button class="moveUpBtn" (click)="moveUp()">
+      <mat-icon>arrow_upward</mat-icon>
+    </button>
   </div>
 </div>
 
