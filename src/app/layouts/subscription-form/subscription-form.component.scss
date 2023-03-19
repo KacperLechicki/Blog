@@ -1,11 +1,10 @@
 :host {
-  margin-top: 50px;
+  width: 100%;
 
   .subscribe_section {
     display: flex;
     justify-content: center;
     padding: 30px 0;
-    width: 99vw;
     background-color: rgb(11, 13, 19);
 
     .subscription-form {
