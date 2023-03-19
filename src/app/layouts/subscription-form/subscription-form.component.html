@@ -1,24 +1,28 @@
-<hr>
+<div class="subscribe_section">
+  <hr>
 
-<form action="" class="subscription-form">
-  <h3>SUBSCRIPTION FORM</h3>
-  <small>Lorem ipsum dolor sit amet consectetur, adipisicing elit. In, sint.</small>
+  <form action="" class="subscription-form">
+    <h3>SUBSCRIPTION FORM</h3>
+    <small>Lorem ipsum dolor sit amet consectetur, adipisicing elit. In, sint.</small>
 
-  <mat-form-field class="example-form-field" appearance="outline">
-    <mat-label>Name</mat-label>
-    <input matInput name="name" type="text" [(ngModel)]="formName_value">
-    <button *ngIf="formName_value" matSuffix mat-icon-button aria-label="Clear" (click)="formName_value=''">
-      <mat-icon>close</mat-icon>
-    </button>
-  </mat-form-field>
+    <mat-form-field class="example-form-field" appearance="outline">
+      <mat-label>Name</mat-label>
+      <input matInput name="name" type="text" [(ngModel)]="formName_value">
+      <button *ngIf="formName_value" matSuffix mat-icon-button aria-label="Clear" (click)="formName_value=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
 
-  <mat-form-field class="example-form-field" appearance="outline">
-    <mat-label>Email</mat-label>
-    <input matInput name="email" type="email" [(ngModel)]="formEmail_value">
-    <button *ngIf="formEmail_value" matSuffix mat-icon-button aria-label="Clear" (click)="formEmail_value=''">
-      <mat-icon>close</mat-icon>
-    </button>
-  </mat-form-field>
+    <mat-form-field class="example-form-field" appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput name="email" type="email" [(ngModel)]="formEmail_value">
+      <button *ngIf="formEmail_value" matSuffix mat-icon-button aria-label="Clear" (click)="formEmail_value=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
 
-  <button [routerLink]="['/posts']" routerLinkActive="active" class="sub_btn animate__pulse animate__slow animate__infinite" mat-stroked-button>Subscribe</button>
-</form>
+    <button [routerLink]="['/posts']" routerLinkActive="active"
+      class="sub_btn animate__pulse animate__slow animate__infinite" mat-stroked-button>Subscribe</button>
+  </form>
+
+</div>
