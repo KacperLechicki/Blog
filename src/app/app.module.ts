@@ -10,10 +10,12 @@ import { HeaderComponent } from './layouts/header/header.component';
 import { HomeComponent } from './layouts/home/home.component';
 import { PostComponent } from './layouts/post/post.component';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatCardModule } from '@angular/material/card';
 
 import { NgxLoadingModule } from 'ngx-loading';
 import { CategoryNavComponent } from './layouts/category-nav/category-nav.component';
 import { FooterComponent } from './layouts/footer/footer.component';
+import { PostCardComponent } from './layouts/post-card/post-card.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,7 @@ import { FooterComponent } from './layouts/footer/footer.component';
     PostComponent,
     CategoryNavComponent,
     FooterComponent,
+    PostCardComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,8 @@ import { FooterComponent } from './layouts/footer/footer.component';
       secondaryColour: 'hsl(224, 67%, 63%)',
       tertiaryColour: 'hsl(224, 67%, 63%)',
     }),
-    MatChipsModule
+    MatChipsModule,
+    MatCardModule
   ],
   providers: [AppComponent],
   bootstrap: [AppComponent],

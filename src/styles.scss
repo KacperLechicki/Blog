@@ -17,7 +17,7 @@ body {
   font-family: "Montserrat", sans-serif;
   font-size: 1.6rem;
   color: whitesmoke;
-  background-color: #0f1118;
+  background-color: #161822;
 }
 
 //----------------------------------------------------------------
@@ -57,6 +57,15 @@ mat-chip-option {
 
 .mat-mdc-standard-chip.mat-warn.mat-mdc-chip-selected {
   background-color: hsla(224, 67%, 63%, 0.734) !important;
+}
+
+mat-card {
+  font-family: "Montserrat", sans-serif !important;
+  background: none !important;
+
+  mat-card-content {
+    font-family: "Montserrat", sans-serif !important;
+  }
 }
 
 //----------------------------------------------------------------

@@ -24,9 +24,6 @@ export class FooterComponent {
           this.hostElement.style.background = 'none';
         } else {
           this.hostElement.style.visibility = 'visible';
-          setTimeout(() => {
-            this.hostElement.style.backgroundColor = 'rgba(5, 5, 5, 0.5)';
-          }, 1000);
         }
       }
     });

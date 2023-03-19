@@ -17,13 +17,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
   bottom: 0;
   left: 0;
+  margin-top: 50px;
   width: 100%;
   min-height: 50px;
-  transition: background-color 1s;
   pointer-events: none;
+  z-index: 10;
 
   .container {
     display: flex;
