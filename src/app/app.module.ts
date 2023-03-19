@@ -22,6 +22,7 @@ import { FooterComponent } from './layouts/footer/footer.component';
 import { PostCardComponent } from './layouts/post-card/post-card.component';
 import { SubscriptionFormComponent } from './layouts/subscription-form/subscription-form.component';
 import { SinglePostComponent } from './layouts/single-post/single-post.component';
+import { CommentFormComponent } from './layouts/comment-form/comment-form.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { SinglePostComponent } from './layouts/single-post/single-post.component
     PostCardComponent,
     SubscriptionFormComponent,
     SinglePostComponent,
+    CommentFormComponent,
   ],
   imports: [
     BrowserModule,

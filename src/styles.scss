@@ -94,6 +94,11 @@ mat-form-field {
     }
   }
 
+  textarea.mat-mdc-input-element {
+    min-height: 120px !important;
+    max-height: 250px !important;
+  }
+
   mat-label {
     color: whitesmoke !important;
   }

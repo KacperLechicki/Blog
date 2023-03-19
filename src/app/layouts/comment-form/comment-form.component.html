@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="card mt-5">
+    <div class="card-body">
+      <h3>Leave a Comment</h3>
+      <hr>
+
+      <form action="" class="subscription-form">
+        <mat-form-field class="comment-form-field" appearance="outline">
+          <mat-label>Name</mat-label>
+          <input matInput name="name" type="text" [(ngModel)]="formName_value">
+          <button *ngIf="formName_value" matSuffix mat-icon-button aria-label="Clear" (click)="formName_value=''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Comment</mat-label>
+          <textarea matInput></textarea>
+        </mat-form-field>
+
+        <button class="sub_btn" mat-stroked-button>Add Comment</button>
+      </form>
+    </div>
+  </div>
+</div>
