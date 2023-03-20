@@ -27,6 +27,10 @@ export class CategoriesComponent {
     this.categoryForm = this.formBuilder.group({
       category: ['', Validators.required],
     });
+
+    this.categoriesService.loadData().subscribe((val) => {
+      console.log(val);
+    });
   }
 
   onSubmit(): void {
