@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+@import "ngx-toastr/toastr";
+
 *,
 *::before,
 *::after {
@@ -110,6 +112,10 @@ mat-form-field {
   input {
     color: whitesmoke !important;
   }
+}
+
+.toast-container .ngx-toastr {
+  box-shadow: none !important;
 }
 
 //----------------------------------------------------------------

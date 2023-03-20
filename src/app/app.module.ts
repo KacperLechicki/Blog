@@ -18,6 +18,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 
+import { ToastrModule } from 'ngx-toastr';
+
 import { NgxLoadingModule } from 'ngx-loading';
 import { CategoryNavComponent } from './layouts/category-nav/category-nav.component';
 import { FooterComponent } from './layouts/footer/footer.component';
@@ -68,6 +70,7 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
     AngularFirestoreModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
+    ToastrModule.forRoot({ timeOut: 3000, preventDuplicates: true }),
   ],
   providers: [AppComponent],
   bootstrap: [AppComponent],

@@ -4,6 +4,9 @@ import {
   AngularFirestore,
 } from '@angular/fire/compat/firestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import { Category } from 'src/app/models/category';
+import { CategoriesService } from 'src/app/services/categories.service';
 
 @Component({
   selector: 'app-categories',
@@ -13,7 +16,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class CategoriesComponent {
   public categoryForm!: FormGroup;
 
-  constructor(private fs: AngularFirestore, private formBuilder: FormBuilder) {}
+  constructor(
+    private categoriesService: CategoriesService,
+    private formBuilder: FormBuilder
+  ) {}
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
@@ -24,15 +30,13 @@ export class CategoriesComponent {
   }
 
   onSubmit(): void {
-    let categoryData = this.categoryForm.value;
+    let categoryData: Category = this.categoryForm.value;
 
-    if (this.categoryForm.valid) {
-      this.fs
-        .collection('categories')
-        .add(categoryData)
-        .then((docRef: any) => {
-          console.log(docRef.id);
-        });
+    if (
+      this.categoryForm.valid &&
+      this.categoryForm.controls['category'].value != ''
+    ) {
+      this.categoriesService.saveData(categoryData);
       this.categoryForm.reset();
       this.categoryForm.controls['category'].setErrors(null);
     } else {
