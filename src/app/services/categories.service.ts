@@ -32,7 +32,7 @@ export class CategoriesService {
       });
   }
 
-  loadData() {
+  loadData(): any {
     return this.fs
       .collection('categories')
       .snapshotChanges()
@@ -46,5 +46,25 @@ export class CategoriesService {
           });
         })
       );
+  }
+
+  updateData(id: string, editData: any): void {
+    this.fs
+      .collection('categories')
+      .doc(id)
+      .update(editData)
+      .then((docRef) => {
+        this.toastr.success('Data updated successfully');
+      });
+  }
+
+  deleteData(id: string): void {
+    this.fs
+      .collection('categories')
+      .doc(id)
+      .delete()
+      .then((docRef) => {
+        this.toastr.success('Data deleted successfully');
+      });
   }
 }

@@ -3,14 +3,14 @@
     mat-stroked-button><mat-icon>arrow_back</mat-icon>Back to Dashboard</button>
   <div class="row">
     <div class="col-md-12">
-      <form action="" [formGroup]="categoryForm">
-        <h3 class="text-center">New Categories</h3>
-        <p class="text-center mb-2">Add new categories</p>
+      <form action="" [formGroup]="categoryForm" #categoryFormAd>
+        <h3 class="text-center">New Category</h3>
+        <p class="text-center mb-2">{{formStatus}} category</p>
         <hr>
 
         <mat-form-field class="example-form-field" appearance="outline">
           <mat-label>Category Name</mat-label>
-          <input formControlName="category" matInput name="category" type="text">
+          <input formControlName="category" matInput name="category" type="text" [ngModel]="categoryVal">
           <button *ngIf="categoryForm.controls['category'].value" matSuffix mat-icon-button aria-label="Clear"
             (click)="categoryForm.controls['category'].reset()">
             <mat-icon>close</mat-icon>
@@ -18,8 +18,40 @@
         </mat-form-field>
 
         <button (click)="onSubmit()" class="sub_btn animate__pulse animate__slow animate__infinite"
-          mat-stroked-button>Add</button>
+          mat-stroked-button>{{formStatus}}</button>
       </form>
     </div>
+  </div>
+
+  <div class="row mt-4 mb-5">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+      <div class="card">
+        <div class="card-body">
+          <table class="table row-border hover">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Category</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let category of categoryArray; let i = index">
+                <td>{{i + 1}}</td>
+                <td>{{category.data.category}}</td>
+                <td>
+                  <button class="btn btn-success" (click)="onEdit(category.data.category, category.idID)"><i
+                      class="fas fa-pen"></i></button>
+                  <button class="btn btn-danger" (click)="onDelete(category.idID)"><i
+                      class="fas fa-trash"></i></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-1"></div>
   </div>
 </div>

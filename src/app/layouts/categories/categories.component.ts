@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import {
   DocumentReference,
   AngularFirestore,
 } from '@angular/fire/compat/firestore';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Category } from 'src/app/models/category';
 import { CategoriesService } from 'src/app/services/categories.service';
@@ -15,6 +15,10 @@ import { CategoriesService } from 'src/app/services/categories.service';
 })
 export class CategoriesComponent {
   public categoryForm!: FormGroup;
+  categoryArray: any = [];
+  categoryVal: string = '';
+  formStatus: string = 'Add';
+  categoryId!: string;
 
   constructor(
     private categoriesService: CategoriesService,
@@ -28,8 +32,9 @@ export class CategoriesComponent {
       category: ['', Validators.required],
     });
 
-    this.categoriesService.loadData().subscribe((val) => {
+    this.categoriesService.loadData().subscribe((val: any) => {
       console.log(val);
+      this.categoryArray = val;
     });
   }
 
@@ -40,11 +45,25 @@ export class CategoriesComponent {
       this.categoryForm.valid &&
       this.categoryForm.controls['category'].value != ''
     ) {
-      this.categoriesService.saveData(categoryData);
-      this.categoryForm.reset();
-      this.categoryForm.controls['category'].setErrors(null);
+      if (this.formStatus === 'Add') {
+        this.categoriesService.saveData(categoryData);
+        this.categoryForm.reset();
+      } else {
+        this.categoriesService.updateData(this.categoryId, categoryData);
+        this.formStatus = 'Add';
+      }
     } else {
       console.log('invalid');
     }
+  }
+
+  onEdit(category: string, id: string): void {
+    this.categoryVal = category;
+    this.formStatus = 'Update';
+    this.categoryId = id;
+  }
+
+  onDelete(id: string): void {
+    this.categoriesService.deleteData(id);
   }
 }
