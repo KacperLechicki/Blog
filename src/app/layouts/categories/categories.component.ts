@@ -3,6 +3,7 @@ import {
   DocumentReference,
   AngularFirestore,
 } from '@angular/fire/compat/firestore';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-categories',
@@ -10,21 +11,32 @@ import {
   styleUrls: ['./categories.component.scss'],
 })
 export class CategoriesComponent {
-  constructor(private fs: AngularFirestore) {}
+  public categoryForm!: FormGroup;
+
+  constructor(private fs: AngularFirestore, private formBuilder: FormBuilder) {}
 
   formCategoryName_value: string = '';
 
-  onSubmit(formData: any): void {
-    let categoryData = {
-      name: formData.value.category,
-      description: '',
-    };
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    this.categoryForm = this.formBuilder.group({
+      category: ['', Validators.required],
+    });
+  }
 
-    this.fs
-      .collection('categories')
-      .add(categoryData)
-      .then((docRef: any) => {
-        console.log(docRef.id);
-      });
+  onSubmit(): void {
+    let categoryData = this.categoryForm.value;
+
+    if (this.categoryForm.valid) {
+      this.fs
+        .collection('categories')
+        .add(categoryData)
+        .then((docRef: any) => {
+          console.log(docRef.id);
+        });
+    } else {
+      console.log('invalid');
+    }
   }
 }
