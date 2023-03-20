@@ -1,12 +1,36 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-subscription-form',
   templateUrl: './subscription-form.component.html',
-  styleUrls: ['./subscription-form.component.scss']
+  styleUrls: ['./subscription-form.component.scss'],
 })
 export class SubscriptionFormComponent {
-  formName_value = '';
-  formEmail_value = '';
+  subscriptionForm!: FormGroup;
+
+  constructor(private formBuilder: FormBuilder) {}
+
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    this.subscriptionForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+    });
+  }
+
+  onSubmit(): void {
+    if (this.subscriptionForm.valid) {
+      console.log(this.subscriptionForm.value);
+      this.subscriptionForm.reset();
+    } else {
+      console.log('invalid');
+    }
+  }
 }

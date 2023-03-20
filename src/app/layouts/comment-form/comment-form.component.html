@@ -4,21 +4,22 @@
       <h3>Leave a Comment</h3>
       <hr>
 
-      <form action="" class="subscription-form">
+      <form action="" class="subscription-form" [formGroup]="commentForm">
         <mat-form-field class="comment-form-field" appearance="outline">
           <mat-label>Name</mat-label>
-          <input matInput name="name" type="text" [(ngModel)]="formName_value">
-          <button *ngIf="formName_value" matSuffix mat-icon-button aria-label="Clear" (click)="formName_value=''">
+          <input formControlName="name" matInput name="name" type="text">
+          <button *ngIf="this.commentForm.controls['name'].value!=''" matSuffix mat-icon-button aria-label="Clear"
+            (click)="this.commentForm.controls['name'].reset()">
             <mat-icon>close</mat-icon>
           </button>
         </mat-form-field>
 
         <mat-form-field class="example-full-width" appearance="outline">
           <mat-label>Comment</mat-label>
-          <textarea matInput></textarea>
+          <textarea formControlName="comment" matInput></textarea>
         </mat-form-field>
 
-        <button class="sub_btn" mat-stroked-button>Add Comment</button>
+        <button (click)="onSubmit()" class="sub_btn" mat-stroked-button>Add Comment</button>
       </form>
     </div>
   </div>
