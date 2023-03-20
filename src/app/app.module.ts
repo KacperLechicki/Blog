@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AngularFireModule } from '@angular/fire/compat';
 
 import { MatButtonModule } from '@angular/material/button';
 import { HeaderComponent } from './layouts/header/header.component';
@@ -24,6 +25,7 @@ import { SubscriptionFormComponent } from './layouts/subscription-form/subscript
 import { SinglePostComponent } from './layouts/single-post/single-post.component';
 import { CommentFormComponent } from './layouts/comment-form/comment-form.component';
 import { CommentListComponent } from './layouts/comment-list/comment-list.component';
+import { DashboardComponent } from './layouts/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,7 @@ import { CommentListComponent } from './layouts/comment-list/comment-list.compon
     SinglePostComponent,
     CommentFormComponent,
     CommentListComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,7 +57,8 @@ import { CommentListComponent } from './layouts/comment-list/comment-list.compon
     MatInputModule,
     ReactiveFormsModule,
     MatIconModule,
-    FormsModule
+    FormsModule,
+    AngularFireModule,
   ],
   providers: [AppComponent],
   bootstrap: [AppComponent],
