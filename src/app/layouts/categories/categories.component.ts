@@ -33,6 +33,8 @@ export class CategoriesComponent {
         .then((docRef: any) => {
           console.log(docRef.id);
         });
+      this.categoryForm.reset();
+      this.categoryForm.controls['category'].setErrors(null);
     } else {
       console.log('invalid');
     }

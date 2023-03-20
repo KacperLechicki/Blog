@@ -24,6 +24,8 @@ export class CommentFormComponent {
     if (this.commentForm.valid) {
       console.log(this.commentForm.value);
       this.commentForm.reset();
+      this.commentForm.controls['name'].setErrors(null);
+      this.commentForm.controls['comment'].setErrors(null);
     } else {
       console.log('invalid');
     }

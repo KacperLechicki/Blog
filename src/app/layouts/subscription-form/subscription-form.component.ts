@@ -29,6 +29,8 @@ export class SubscriptionFormComponent {
     if (this.subscriptionForm.valid) {
       console.log(this.subscriptionForm.value);
       this.subscriptionForm.reset();
+      this.subscriptionForm.controls['name'].setErrors(null);
+      this.subscriptionForm.controls['email'].setErrors(null);
     } else {
       console.log('invalid');
     }
