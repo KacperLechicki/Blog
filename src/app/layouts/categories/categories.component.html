@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <button class="sub_btn" [routerLink]="['/dashboard']" routerLinkActive="router-link-active"
+      mat-stroked-button><mat-icon>arrow_back</mat-icon>Back to Dashboard</button>
+    <div class="col-md-12">
+
+
+      <form action="">
+        <h3 class="text-center">New Categories</h3>
+        <p class="text-center mb-2">Add new categories</p>
+        <hr>
+
+        <mat-form-field class="example-form-field" appearance="outline">
+          <mat-label>Category Name</mat-label>
+          <input matInput name="category" type="text" [(ngModel)]="formCategoryName_value">
+          <button *ngIf="formCategoryName_value" matSuffix mat-icon-button aria-label="Clear"
+            (click)="formCategoryName_value=''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <button class="sub_btn animate__pulse animate__slow animate__infinite" mat-stroked-button>Add</button>
+      </form>
+    </div>
+  </div>
+</div>

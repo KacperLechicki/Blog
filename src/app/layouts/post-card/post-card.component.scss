@@ -27,12 +27,12 @@
   margin-top: 30px;
   max-width: 300px;
   color: whitesmoke;
+  background-color: #171a24;
   border-radius: 8px;
   box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.364);
   overflow: hidden;
   cursor: pointer;
-  animation: swing-in-top-fwd 1.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
-  animation-fill-mode: none;
+  animation: swing-in-top-fwd 1.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) none;
   transition: transform 0.5s;
 
   &:hover {
