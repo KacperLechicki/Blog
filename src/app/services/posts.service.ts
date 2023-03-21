@@ -102,4 +102,22 @@ export class PostsService {
         this.toastr.success('Data deleted successfully');
       });
   }
+
+  loadCategoryPosts(categoryID: any): any {
+    return this.fs
+      .collection('posts', (ref) =>
+        ref.where('category.idID', '==', categoryID)
+      )
+      .snapshotChanges()
+      .pipe(
+        map((actions) => {
+          return actions.map((a: any) => {
+            const data = a.payload.doc.data();
+            const id = a.payload.doc as QueryDocumentSnapshot<DocumentData>;
+            const idID = id.id;
+            return { idID, data };
+          });
+        })
+      );
+  }
 }

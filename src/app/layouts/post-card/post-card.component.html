@@ -1,16 +1,18 @@
 <mat-card class="example-card" [routerLink]="['/singlePost']" routerLinkActive="router-link-active">
-  <img mat-card-image src="https://cdn.pixabay.com/photo/2015/10/30/20/13/sunrise-1014712_960_720.jpg"
-    alt="Photo of a Shiba Inu">
+  <img mat-card-image src="{{postData.data.postImgPath}}">
   <mat-card-content class="card-body">
     <div class="tags mt-2 mb-3">
-      <small class="text-center">#Design</small>
-      <small class="text-center">#Featured</small>
+      <small class="text-center">#{{postData.data.category.category}}</small>
       <small class="text-center views">Views - 100,256</small>
     </div>
 
-    <h3 class="mt-1"> HOW TO START A BLOG IN 2021 EDITED NEW CATEGORY</h3>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, sed?</p>
+    <h3 class="mt-1"> {{postData.data.title}}</h3>
+    <hr>
+    <div class="content">
+      <p>{{postData.data.excerpt}}</p>
+    </div>
 
-    <small class="updated text-center ml-3">LAST UPDATED - SEP 20, 2021</small>
+    <small class="updated text-center ml-3">LAST UPDATED - {{postData.data.createdAt.toMillis() |
+      date}}</small>
   </mat-card-content>
 </mat-card>

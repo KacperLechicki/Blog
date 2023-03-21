@@ -41,9 +41,7 @@
     </div>
     <div class="col-xl-3">
       <div class="cards">
-        <app-post-card></app-post-card>
-        <app-post-card></app-post-card>
-        <app-post-card></app-post-card>
+        <app-post-card *ngIf="postData"></app-post-card>
       </div>
     </div>
     <button class="moveUpBtn" (click)="moveUp()">
