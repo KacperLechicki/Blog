@@ -1,7 +1,7 @@
 <app-category-nav></app-category-nav>
 
 <div class="container">
-  <app-post-card *ngFor="let post of postArray" [postData]="post"></app-post-card>
+    <app-post-card *ngFor="let post of postArray" [postData]="post"></app-post-card>
 </div>
 <button class="moveUpBtn" (click)="moveUp()">
   <mat-icon>arrow_upward</mat-icon>

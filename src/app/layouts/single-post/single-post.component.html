@@ -4,26 +4,26 @@
   <div class="row">
     <div class="col-xl-9 col-md-12">
       <div class="card">
-        <img src="{{postData.postImgPath}}" alt="" class="card-img-top img-fluid">
+        <img *ngIf="postData" src="{{postData.postImgPath}}" alt="" class="card-img-top img-fluid">
         <div class="card-body">
           <div class="tags mt-2">
-            <small class="text-center">#{{postData.category}}</small>
-            <small class="text-center views">Views - {{postData.views}}</small>
-            <small class="updated text-center">LAST UPDATED - {{postData.createdAt.toMillis() |
+            <small *ngIf="postData" class="text-center">#{{postData.category.category}}</small>
+            <small *ngIf="postData" class="text-center views">Views - {{postData.views}}</small>
+            <small *ngIf="postData" class="updated text-center">LAST UPDATED - {{postData.createdAt.toMillis() |
               date}},</small>
           </div>
 
-          <h1 class="mt-5">{{postData.title}}</h1>
+          <h1 *ngIf="postData" class="mt-5">{{postData.title}}</h1>
           <hr>
-          <p [innerHtml]="postData.content"></p>
+          <p *ngIf="postData" [innerHtml]="postData.content"></p>
         </div>
       </div>
       <app-comment-form></app-comment-form>
       <app-comment-list></app-comment-list>
     </div>
-    <div class="col-xl-3">
+    <div class="col-xl-3 col-md-12">
       <div class="cards">
-        <app-post-card></app-post-card>
+        <app-post-card *ngFor="let sim of similarPostArray" [postData]="sim"></app-post-card>
       </div>
     </div>
     <button class="moveUpBtn" (click)="moveUp()">

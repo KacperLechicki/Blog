@@ -12,6 +12,7 @@ import { PostsService } from 'src/app/services/posts.service';
 export class SinglePostComponent {
   loading: boolean = false;
   postData: any;
+  similarPostArray: any[] = [];
 
   constructor(
     private loadingS: LoadingService,
@@ -28,10 +29,17 @@ export class SinglePostComponent {
       this.postService.loadOnePost(data['id']).subscribe((post: any) => {
         console.log(post);
         this.postData = post;
+        this.loadSimilarPost(this.postData.category.idID);
       });
       setTimeout(() => {
         this.loading = this.loadingS.loadingStop();
       }, 1000);
+    });
+  }
+
+  loadSimilarPost(catID: any) {
+    this.postService.loadSimilar(catID).subscribe((val: any) => {
+      this.similarPostArray = val;
     });
   }
 
