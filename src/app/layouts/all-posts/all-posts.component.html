@@ -11,9 +11,51 @@
 
           <button mat-stroked-button class="sub_btn" [routerLink]="['/allPosts/new']"
             routerLinkActive="router-link-active">Add New Post</button>
-            <br>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <table class="table row-border hover">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Image</th>
+                <th>Title</th>
+                <th>Excerpt</th>
+                <th>Category</th>
+                <th>Date</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let post of postArray; let i = index">
+                <td width="10">{{i + 1}}</td>
+                <td width="70"><img width="150" src="{{post.data.postImgPath}}" class="img img-fluid"></td>
+                <td width="80">{{post.data.title}}</td>
+                <td width="500">{{post.data.excerpt}}</td>
+                <td width="30">{{post.data.category.category}}</td>
+                <td width="50">{{post.data.createdAt.toMillis() | date}}</td>
+                <td width="20" class="tdAction">
+                  <button class="btn btn-success" [routerLink]="['/allPosts/new']" routerLinkActive="router-link-active"
+                    [queryParams]="{id: post.idID}"><i class="fas fa-pen"></i></button>
+                  <button class="btn btn-danger" (click)="onDelete(post.data.postImgPath, post.idID)"><i
+                      class="fas fa-trash"></i></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<button class="moveUpBtn" (click)="moveUp()">
+  <mat-icon>arrow_upward</mat-icon>
+</button>

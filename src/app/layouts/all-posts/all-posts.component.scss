@@ -40,6 +40,9 @@
       none;
 
     .card-body {
+      max-height: 600px;
+      overflow: auto;
+
       h3 {
         font-size: 2rem;
         font-weight: bold;
@@ -61,6 +64,63 @@
         max-height: 30px;
         background: none;
       }
+
+      .table {
+        min-width: 100%;
+        color: whitesmoke;
+        background-color: rgb(11, 13, 19);
+        border-bottom: 1px solid rgba(245, 245, 245, 0.551);
+
+        thead {
+          border-top: none;
+        }
+
+        tbody {
+          border-radius: 8px;
+
+          td {
+            padding: 10px;
+            max-width: 120px;
+            max-height: 30px;
+            border-left: 1px solid rgba(245, 245, 245, 0.551);
+            border-right: 1px solid rgba(245, 245, 245, 0.551);
+
+            button {
+              margin-top: 0;
+              margin-right: 10px;
+            }
+          }
+
+          .tdAction {
+            max-width: 20px;
+          }
+        }
+      }
     }
+  }
+}
+
+.moveUpBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding: 5px;
+  width: 50px;
+  height: 50px;
+  color: whitesmoke;
+  background: none;
+  border: 1px solid whitesmoke;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: color 0.3s, border 0.3s;
+
+  &:hover {
+    color: rgba(72, 101, 180, 0.7);
+    border: 1px solid rgba(72, 101, 180, 0.7);
   }
 }

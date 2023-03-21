@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { Post } from 'src/app/models/post';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { LoadingService } from 'src/app/services/loading.service';
@@ -18,13 +19,48 @@ export class NewPostComponent {
   selectedImg: any = '';
   postForm!: FormGroup;
   submitTry: boolean = false;
+  post: any;
+  formStatus: string = 'Add new';
+  docID: string = '';
 
   constructor(
     private categoriesService: CategoriesService,
     private loadingS: LoadingService,
     private formBuilder: FormBuilder,
-    private postService: PostsService
-  ) {}
+    private postService: PostsService,
+    private route: ActivatedRoute
+  ) {
+    this.route.queryParams.subscribe((val) => {
+      this.postService.loadPostToEdit(val['id']).subscribe((post: any) => {
+        this.docID = val['id'];
+        this.post = post;
+        if (this.docID) {
+          this.postForm = this.formBuilder.group({
+            title: [this.post.title, Validators.required],
+            permalink: [this.post.permalink, Validators.required],
+            excerpt: [this.post.excerpt, Validators.required],
+            category: [
+              `${this.post.category.idID}-${this.post.category.category}`,
+              Validators.required,
+            ],
+            image: ['', Validators.required],
+            content: [this.post.content, Validators.required],
+          });
+          this.imgSrc = this.post.postImgPath;
+          this.formStatus = 'Edit';
+        } else {
+          this.postForm = this.formBuilder.group({
+            title: ['', Validators.required],
+            permalink: ['', Validators.required],
+            excerpt: ['', Validators.required],
+            category: ['', Validators.required],
+            image: ['', Validators.required],
+            content: ['', Validators.required],
+          });
+        }
+      });
+    });
+  }
 
   ngOnInit(): void {
     this.loading = this.loadingS.loadingStart();
@@ -34,15 +70,6 @@ export class NewPostComponent {
       this.categoryArray = val;
     });
     this.loading = this.loadingS.loadingStop();
-
-    this.postForm = this.formBuilder.group({
-      title: ['', Validators.required],
-      permalink: ['', Validators.required],
-      excerpt: ['', Validators.required],
-      category: ['', Validators.required],
-      image: ['', Validators.required],
-      content: ['', Validators.required],
-    });
   }
 
   onTitleChange($event: any): void {
@@ -90,7 +117,12 @@ export class NewPostComponent {
     if (this.postForm.valid) {
       this.loading = this.loadingS.loadingStart();
 
-      this.postService.uploadImage(this.selectedImg, formData);
+      this.postService.uploadImage(
+        this.selectedImg,
+        formData,
+        this.formStatus,
+        this.docID
+      );
 
       setTimeout(() => {
         this.imgSrc = './assets/placeholder-img.jpg';
