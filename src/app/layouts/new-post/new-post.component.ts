@@ -15,6 +15,7 @@ export class NewPostComponent {
   imgSrc: any = './assets/placeholder-img.jpg';
   selectedImg: any = '';
   postForm!: FormGroup;
+  submitTry: boolean = false;
 
   constructor(
     private categoriesService: CategoriesService,
@@ -69,6 +70,7 @@ export class NewPostComponent {
     } else {
       window.scrollTo(0, 0);
       console.log('invalid');
+      this.submitTry = true;
     }
   }
 

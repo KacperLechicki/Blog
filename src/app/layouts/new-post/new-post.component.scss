@@ -23,6 +23,18 @@
   }
 }
 
+.errorMsg {
+  margin-left: 16px;
+  font-size: 1.2rem;
+  letter-spacing: 0.7px;
+  color: #f44336;
+}
+
+.imgInvalid {
+  border: 1px solid #f44336;
+  border-radius: 8px;
+}
+
 .container {
   .sub_btn {
     margin-top: 20px;
@@ -75,6 +87,8 @@
               flex-direction: column;
               justify-content: center;
               align-items: flex-start;
+              margin-top: 5px;
+              padding: 7px;
 
               img {
                 margin-bottom: 12px;
