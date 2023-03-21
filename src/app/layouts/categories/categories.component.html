@@ -8,13 +8,14 @@
         <p class="text-center mb-2">{{formStatus}} category</p>
         <hr>
 
-        <mat-form-field class="example-form-field" appearance="outline">
+        <mat-form-field class="mb-3 example-form-field" appearance="outline">
           <mat-label>Category Name</mat-label>
           <input formControlName="category" matInput name="category" type="text" [ngModel]="categoryVal">
           <button *ngIf="categoryForm.controls['category'].value" matSuffix mat-icon-button aria-label="Clear"
             (click)="categoryForm.controls['category'].reset()">
             <mat-icon>close</mat-icon>
           </button>
+          <mat-error *ngIf="categoryForm.controls['category'].hasError('required')">This field is required</mat-error>
         </mat-form-field>
 
         <button (click)="onSubmit()" class="sub_btn animate__pulse animate__slow animate__infinite"
@@ -54,5 +55,9 @@
     <div class="col-md-1"></div>
   </div>
 </div>
+
+<button class="moveUpBtn" (click)="moveUp()">
+  <mat-icon>arrow_upward</mat-icon>
+</button>
 
 <ngx-loading *ngIf="loading" [show]="loading"></ngx-loading>

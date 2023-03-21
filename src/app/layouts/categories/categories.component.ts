@@ -62,6 +62,7 @@ export class CategoriesComponent {
         this.loading = this.loadingS.loadingStart();
         this.categoriesService.updateData(this.categoryId, categoryData);
         this.formStatus = 'Add';
+        this.categoryForm.reset();
         this.loading = this.loadingS.loadingStop();
       }
     } else {
@@ -79,5 +80,9 @@ export class CategoriesComponent {
     this.loading = this.loadingS.loadingStart();
     this.categoriesService.deleteData(id);
     this.loading = this.loadingS.loadingStop();
+  }
+
+  moveUp(): void {
+    window.scrollTo(0, 0);
   }
 }

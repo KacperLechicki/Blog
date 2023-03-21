@@ -5,18 +5,20 @@
       <hr>
 
       <form action="" class="subscription-form" [formGroup]="commentForm">
-        <mat-form-field class="comment-form-field" appearance="outline">
+        <mat-form-field class="mb-3 comment-form-field" appearance="outline">
           <mat-label>Name</mat-label>
           <input formControlName="name" matInput name="name" type="text">
           <button *ngIf="this.commentForm.controls['name'].value!=''" matSuffix mat-icon-button aria-label="Clear"
             (click)="this.commentForm.controls['name'].reset()">
             <mat-icon>close</mat-icon>
           </button>
+          <mat-error *ngIf="commentForm.controls['name'].hasError('required')">This field is required</mat-error>
         </mat-form-field>
 
-        <mat-form-field class="example-full-width" appearance="outline">
+        <mat-form-field class="mb-3 example-full-width" appearance="outline">
           <mat-label>Comment</mat-label>
           <textarea formControlName="comment" matInput></textarea>
+          <mat-error *ngIf="commentForm.controls['comment'].hasError('required')">This field is required</mat-error>
         </mat-form-field>
 
         <button (click)="onSubmit()" class="sub_btn" mat-stroked-button>Add Comment</button>

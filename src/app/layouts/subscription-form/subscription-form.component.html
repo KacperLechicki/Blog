@@ -5,22 +5,25 @@
     <h3>SUBSCRIPTION FORM</h3>
     <small>Stay up to date with new posts.</small>
 
-    <mat-form-field class="example-form-field" appearance="outline">
+    <mat-form-field class="mb-3 example-form-field" appearance="outline">
       <mat-label>Name</mat-label>
       <input formControlName="name" matInput name="name" type="text">
       <button *ngIf="this.subscriptionForm.controls['name'].value!=''" matSuffix mat-icon-button aria-label="Clear"
         (click)="this.subscriptionForm.controls['name'].reset()">
         <mat-icon>close</mat-icon>
       </button>
+      <mat-error *ngIf="subscriptionForm.controls['name'].hasError('required')">This field is required</mat-error>
     </mat-form-field>
 
-    <mat-form-field class="example-form-field" appearance="outline">
+    <mat-form-field class="mb-3 example-form-field" appearance="outline">
       <mat-label>Email</mat-label>
       <input formControlName="email" matInput name="email" type="email">
       <button *ngIf="this.subscriptionForm.controls['email'].value!=''" matSuffix mat-icon-button aria-label=" Clear"
         (click)="this.subscriptionForm.controls['email'].reset()">
         <mat-icon>close</mat-icon>
       </button>
+      <mat-error *ngIf="subscriptionForm.controls['email'].hasError('required')">This field is required</mat-error>
+      <mat-error *ngIf="subscriptionForm.controls['email'].hasError('email')">Email format is incorrect</mat-error>
     </mat-form-field>
 
     <button (click)="onSubmit()" class="sub_btn animate__pulse animate__slow animate__infinite"
