@@ -135,12 +135,12 @@
 }
 
 .moveUpBtn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: relative;
   left: 50%;
   transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-bottom: 30px;
   padding: 5px;
   width: 50px;

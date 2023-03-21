@@ -10,15 +10,16 @@ import { LoadingService } from 'src/app/services/loading.service';
 export class PostComponent {
   loading: boolean = false;
 
-  constructor(private loadingS: LoadingService) {
-    this.loading = this.loadingS.loadingStart();
-  }
+  constructor(private loadingS: LoadingService) {}
 
   ngOnInit(): void {
+    this.loading = this.loadingS.loadingStart();
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     window.scrollTo(0, 0);
-    this.loading = this.loadingS.loadingStop();
+    setTimeout(() => {
+      this.loading = this.loadingS.loadingStop();
+    }, 1000);
   }
 
   moveUp(): void {

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from 'src/app/models/post';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { LoadingService } from 'src/app/services/loading.service';
@@ -28,7 +28,8 @@ export class NewPostComponent {
     private loadingS: LoadingService,
     private formBuilder: FormBuilder,
     private postService: PostsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {
     this.route.queryParams.subscribe((val) => {
       this.postService.loadPostToEdit(val['id']).subscribe((post: any) => {
@@ -63,13 +64,16 @@ export class NewPostComponent {
   }
 
   ngOnInit(): void {
-    this.loading = this.loadingS.loadingStart();
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
+    window.scrollTo(0, 0);
+    this.loading = this.loadingS.loadingStart();
     this.categoriesService.loadData().subscribe((val: any) => {
       this.categoryArray = val;
+      setTimeout(() => {
+        this.loading = this.loadingS.loadingStop();
+      }, 1000);
     });
-    this.loading = this.loadingS.loadingStop();
   }
 
   onTitleChange($event: any): void {
@@ -94,8 +98,6 @@ export class NewPostComponent {
   }
 
   onSubmit(): void {
-    window.scrollTo(0, 0);
-
     let splittedCategory = this.postForm.value.category.split('-');
 
     const formData: Post = {
@@ -115,8 +117,6 @@ export class NewPostComponent {
     };
 
     if (this.postForm.valid) {
-      this.loading = this.loadingS.loadingStart();
-
       this.postService.uploadImage(
         this.selectedImg,
         formData,
@@ -127,9 +127,9 @@ export class NewPostComponent {
       setTimeout(() => {
         this.imgSrc = './assets/placeholder-img.jpg';
         this.submitTry = false;
-        this.loading = this.loadingS.loadingStop();
       }, 1000);
       this.postForm.reset();
+      this.router.navigate(['/allPosts']);
     } else {
       this.submitTry = true;
     }

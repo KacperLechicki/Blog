@@ -1,17 +1,9 @@
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { Injectable } from '@angular/core';
-import {
-  AngularFirestore,
-  DocumentChangeAction,
-} from '@angular/fire/compat/firestore';
-import {
-  DocumentSnapshot,
-  QueryDocumentSnapshot,
-  QuerySnapshot,
-} from 'firebase/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { QueryDocumentSnapshot } from 'firebase/firestore';
 import { ToastrService } from 'ngx-toastr';
 import { map, Observable } from 'rxjs';
-import { Category } from '../models/category';
 import { DocumentData } from '@firebase/firestore-types';
 import { Router } from '@angular/router';
 
@@ -92,10 +84,13 @@ export class PostsService {
       });
   }
 
-  deleteImg(postImgPath: string, id:any): void {
-    this.storage.storage.refFromURL(postImgPath).delete().then(() => {
-      this.deleteData(id);
-    })
+  deleteImg(postImgPath: string, id: any): void {
+    this.storage.storage
+      .refFromURL(postImgPath)
+      .delete()
+      .then(() => {
+        this.deleteData(id);
+      });
   }
 
   deleteData(id: string): void {

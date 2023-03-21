@@ -24,6 +24,7 @@
 }
 
 .container {
+
   button {
     margin-top: 20px;
   }
@@ -40,9 +41,6 @@
       none;
 
     .card-body {
-      max-height: 600px;
-      overflow: auto;
-
       h3 {
         font-size: 2rem;
         font-weight: bold;
@@ -65,34 +63,50 @@
         background: none;
       }
 
-      .table {
-        min-width: 100%;
-        color: whitesmoke;
-        background-color: rgb(11, 13, 19);
-        border-bottom: 1px solid rgba(245, 245, 245, 0.551);
+      .row {
+        display: flex;
+        justify-content: center;
 
-        thead {
-          border-top: none;
-        }
+        mat-card {
+          margin-bottom: 30px;
+          width: 100%;
 
-        tbody {
-          border-radius: 8px;
-
-          td {
-            padding: 10px;
-            max-width: 120px;
-            max-height: 30px;
-            border-left: 1px solid rgba(245, 245, 245, 0.551);
-            border-right: 1px solid rgba(245, 245, 245, 0.551);
-
-            button {
-              margin-top: 0;
-              margin-right: 10px;
+          mat-card-content {
+            
+            h3 {
+              max-height: 50px;
+              overflow: auto;
             }
-          }
 
-          .tdAction {
-            max-width: 20px;
+            .tags {
+              font-size: 1.4rem;
+
+              small {
+                margin-right: 5px;
+                color: rgb(72, 101, 180);
+              }
+            }
+
+            .actions {
+              button {
+                margin-right: 5px;
+              }
+            }
+
+            .content {
+              margin-bottom: 50px;
+              max-height: 100px;
+              overflow: auto;
+            }
+
+            .updated {
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              margin: 15px;
+              font-size: 1.2rem;
+              color: rgb(72, 101, 180);
+            }
           }
         }
       }
