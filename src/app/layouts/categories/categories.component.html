@@ -10,7 +10,8 @@
 
         <mat-form-field class="mb-3 example-form-field" appearance="outline">
           <mat-label>Category Name</mat-label>
-          <input formControlName="category" matInput name="category" type="text" [ngModel]="categoryVal">
+          <input formControlName="category" matInput name="category" type="text"
+            [ngModel]="categoryVal">
           <button *ngIf="categoryForm.controls['category'].value" matSuffix mat-icon-button aria-label="Clear"
             (click)="categoryForm.controls['category'].reset()">
             <mat-icon>close</mat-icon>
@@ -41,7 +42,7 @@
               <tr *ngFor="let category of categoryArray; let i = index">
                 <td>{{i + 1}}</td>
                 <td>{{category.data.category}}</td>
-                <td>
+                <td class="tdAction">
                   <button class="btn btn-success" (click)="onEdit(category.data.category, category.idID)"><i
                       class="fas fa-pen"></i></button>
                   <button class="btn btn-danger" (click)="onDelete(category.idID)"><i class="fas fa-trash"></i></button>

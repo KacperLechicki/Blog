@@ -1,0 +1,91 @@
+<div class="container">
+  <button class="sub_btn" [routerLink]="['/allPosts']" routerLinkActive="router-link-active"
+    mat-stroked-button><mat-icon>arrow_back</mat-icon>Back to All Posts</button>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <div class="card">
+        <div class="card-body">
+          <h3>Add New Post</h3>
+          <p>From here you can add your new post.</p>
+          <hr>
+
+          <form action="">
+            <div class="row">
+              <div class="col-md-7">
+                <div class="card2">
+                  <div class="card-body">
+                    <mat-form-field class="mb-3 example-form-field" appearance="outline">
+                      <mat-label>Title</mat-label>
+                      <input matInput name="category" type="text">
+                      <button matSuffix mat-icon-button aria-label="Clear">
+                        <mat-icon>close</mat-icon>
+                      </button>
+                      <mat-error>This field is
+                        required</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="mb-3 example-form-field" appearance="outline">
+                      <mat-label>Permalink</mat-label>
+                      <input matInput name="category" type="text">
+                      <button matSuffix mat-icon-button aria-label="Clear">
+                        <mat-icon>close</mat-icon>
+                      </button>
+                      <mat-error>This field is
+                        required</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="mb-3 example-full-width" appearance="outline">
+                      <mat-label>Excerpt</mat-label>
+                      <textarea matInput></textarea>
+                      <mat-error>This field is required</mat-error>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-5">
+                <div class="card2">
+                  <div class="card-body">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Select</mat-label>
+                      <mat-select appearance="outline">
+                        <mat-option value="one">First option</mat-option>
+                        <mat-option value="two">Second option</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+
+                    <div class="fileGroup">
+                      <label for="">Post Image</label>
+                      <input type="file" class="fileInput">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row mt-5">
+              <div class="col-md-12">
+                <div class="card2">
+                  <div class="card-body">
+                    <mat-form-field class="mb-3 example-full-width" appearance="outline">
+                      <mat-label>Content</mat-label>
+                      <textarea matInput></textarea>
+                      <mat-error>This field is required</mat-error>
+                    </mat-form-field>
+                  </div>
+                </div>
+
+                <button mat-stroked-button class="sub_btn mt-5 mb-0" [routerLink]="['/allPosts']"
+                  routerLinkActive="router-link-active">Save Post</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button class="moveUpBtn" (click)="moveUp()">
+  <mat-icon>arrow_upward</mat-icon>
+</button>

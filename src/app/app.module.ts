@@ -33,6 +33,9 @@ import { CategoriesComponent } from './layouts/categories/categories.component';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { AllPostsComponent } from './layouts/all-posts/all-posts.component';
+import { NewPostComponent } from './layouts/new-post/new-post.component';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -49,6 +52,8 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
     CommentListComponent,
     DashboardComponent,
     CategoriesComponent,
+    AllPostsComponent,
+    NewPostComponent,
   ],
   imports: [
     BrowserModule,
@@ -71,6 +76,7 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
     ToastrModule.forRoot({ timeOut: 3000, preventDuplicates: true }),
+    MatSelectModule,
   ],
   providers: [AppComponent],
   bootstrap: [AppComponent],

@@ -1,0 +1,19 @@
+<div class="container">
+  <button class="sub_btn" [routerLink]="['/dashboard']" routerLinkActive="router-link-active"
+    mat-stroked-button><mat-icon>arrow_back</mat-icon>Back to Dashboard</button>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="text-center">All Posts on Blog</h3>
+          <p class="text-center">From here you can manage your blog posts.</p>
+          <hr>
+
+          <button mat-stroked-button class="sub_btn" [routerLink]="['/allPosts/new']"
+            routerLinkActive="router-link-active">Add New Post</button>
+            <br>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

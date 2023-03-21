@@ -97,12 +97,27 @@ mat-form-field {
     }
   }
 
+  .mat-mdc-form-field
+    .mdc-text-field--outlined
+    .mdc-notched-outline--upgraded
+    .mdc-floating-label--float-above {
+    background-color: #171a24 !important;
+  }
+
   textarea.mat-mdc-input-element {
     min-height: 120px !important;
     max-height: 250px !important;
     color: whitesmoke !important;
 
     background: none !important;
+  }
+
+  .mat-mdc-select-value {
+    color: whitesmoke !important;
+  }
+
+  .mat-mdc-select-arrow svg {
+    color: whitesmoke !important;
   }
 
   mat-label {
