@@ -1,0 +1,39 @@
+<div class="container">
+  <button class="sub_btn" [routerLink]="['/']" routerLinkActive="router-link-active"
+    mat-stroked-button><mat-icon>arrow_back</mat-icon>Back to App</button>
+  <div class="row">
+    <div class="col-md-12">
+      <form action="" [formGroup]="loginForm">
+        <h3 class="text-center">Login</h3>
+        <p class="text-center mb-2">Login to your admin account</p>
+        <hr>
+
+        <mat-form-field class="mb-3 example-form-field" appearance="outline">
+          <mat-label>Email</mat-label>
+          <input formControlName="email" matInput name="email" type="email">
+          <button *ngIf="loginForm.controls['email'].value" matSuffix mat-icon-button aria-label="Clear"
+            (click)="loginForm.controls['email'].reset()">
+            <mat-icon>close</mat-icon>
+          </button>
+          <mat-error *ngIf="loginForm.controls['email'].hasError('required') && submitTry">This field is
+            required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="mb-3 example-form-field" appearance="outline">
+          <mat-label>Password</mat-label>
+          <input formControlName="password" matInput name="password" type="password">
+          <button *ngIf="loginForm.controls['password'].value" matSuffix mat-icon-button aria-label="Clear"
+            (click)="loginForm.controls['password'].reset()">
+            <mat-icon>close</mat-icon>
+          </button>
+          <mat-error *ngIf="loginForm.controls['password'].hasError('required') && submitTry">This field is
+            required</mat-error>
+        </mat-form-field>
+
+        <button (click)="onSubmit()" class="sub_btn animate__pulse animate__slow animate__infinite"
+          mat-stroked-button>Login</button>
+      </form>
+    </div>
+  </div>
+
+  <ngx-loading *ngIf="loading" [show]="loading"></ngx-loading>

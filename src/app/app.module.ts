@@ -21,6 +21,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
 import { ToastrModule } from 'ngx-toastr';
 
@@ -40,6 +41,7 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { AllPostsComponent } from './layouts/all-posts/all-posts.component';
 import { NewPostComponent } from './layouts/new-post/new-post.component';
 import { MatSelectModule } from '@angular/material/select';
+import { LoginComponent } from './auth/login/login.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +60,7 @@ import { MatSelectModule } from '@angular/material/select';
     CategoriesComponent,
     AllPostsComponent,
     NewPostComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -84,6 +87,7 @@ import { MatSelectModule } from '@angular/material/select';
     HttpClientModule,
     AngularEditorModule,
     AngularFireStorageModule,
+    AngularFireAuthModule
   ],
   providers: [AppComponent],
   bootstrap: [AppComponent],

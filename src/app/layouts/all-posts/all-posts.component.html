@@ -28,7 +28,6 @@
                 <mat-card-content>
                   <div class="tags mt-2">
                     <small class="text-center">#{{post.data.category.category}}</small>
-                    <small class="text-center">#{{post.data.isFeatured}}</small>
                     <small class="text-center views">Views - 100,256</small>
                   </div>
 
@@ -39,10 +38,10 @@
                     <button class="btn btn-danger" (click)="onDelete(post.data.postImgPath, post.idID)"><i
                         class="fas fa-trash"></i></button>
 
-                    <button *ngIf="!post.data.isFeatured" class="btn btn-primary"><i
+                    <!-- <button *ngIf="!post.data.isFeatured" class="btn btn-primary"><i
                         class="fa-solid fa-star"></i></button>
                     <button *ngIf="post.data.isFeatured" class="btn btn-warning"><i
-                        class="fa-solid fa-xmark"></i></button>
+                        class="fa-solid fa-xmark"></i></button> -->
                   </div>
 
                   <h3 class="mt-1"> {{post.data.title}}</h3>
