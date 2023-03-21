@@ -41,7 +41,6 @@
       overflow: hidden;
       box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.364);
 
-
       .card-body {
         h3 {
           font-size: 2rem;
@@ -77,6 +76,14 @@
               justify-content: center;
               align-items: flex-start;
 
+              img {
+                margin-bottom: 12px;
+                max-width: 320px;
+                width: 100%;
+                max-height: 250px;
+                border-radius: 8px;
+              }
+
               label {
                 margin-bottom: 10px;
                 font-weight: bold;
@@ -98,7 +105,27 @@
   }
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 375px) {
+  .container {
+    .row {
+      .card {
+        .card-body {
+          form {
+            .card2 {
+              .fileGroup {
+                input.fileInput {
+                  font-size: 1.2rem;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 992px) {
   .container {
     .row {
       .card {

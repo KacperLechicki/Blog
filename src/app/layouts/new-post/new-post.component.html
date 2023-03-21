@@ -16,7 +16,7 @@
                   <div class="card-body">
                     <mat-form-field class="mb-3 example-form-field" appearance="outline">
                       <mat-label>Title</mat-label>
-                      <input matInput name="category" type="text" (keyup)="onTitleChange($event)">
+                      <input matInput name="title" type="text" (keyup)="onTitleChange($event)">
                       <button matSuffix mat-icon-button aria-label="Clear">
                         <mat-icon>close</mat-icon>
                       </button>
@@ -26,7 +26,7 @@
 
                     <mat-form-field class="mb-3 example-form-field" appearance="outline">
                       <mat-label>Permalink</mat-label>
-                      <input matInput name="category" type="text">
+                      <input matInput name="permalink" type="text" [ngModel]="permalink">
                       <button matSuffix mat-icon-button aria-label="Clear">
                         <mat-icon>close</mat-icon>
                       </button>
@@ -36,7 +36,7 @@
 
                     <mat-form-field class="mb-3 example-full-width" appearance="outline">
                       <mat-label>Excerpt</mat-label>
-                      <textarea matInput></textarea>
+                      <textarea name="excerpt" matInput></textarea>
                       <mat-error>This field is required</mat-error>
                     </mat-form-field>
                   </div>
@@ -47,16 +47,17 @@
                 <div class="card2">
                   <div class="card-body">
                     <mat-form-field appearance="outline">
-                      <mat-label>Select</mat-label>
-                      <mat-select appearance="outline">
-                        <mat-option value="one">First option</mat-option>
-                        <mat-option value="two">Second option</mat-option>
+                      <mat-label>Post Category</mat-label>
+                      <mat-select name="category" appearance="outline">
+                        <mat-option *ngFor="let category of categoryArray"
+                          value="category">{{category.data.category}}</mat-option>
                       </mat-select>
                     </mat-form-field>
 
                     <div class="fileGroup">
-                      <label class="fileLabel" for="">Post Image</label>
-                      <input type="file" class="fileInput">
+                      <label class="fileLabel" for="image">Post Image</label>
+                      <img [src]="imgSrc" class="formc-control img-fluid img-preview">
+                      <input name="image" type="file" class="fileInput" accept="image/*" (change)="showPreview($event)">
                     </div>
                   </div>
                 </div>
@@ -69,7 +70,7 @@
                   <div class="card-body">
                     <mat-form-field class="mb-3 example-full-width" appearance="outline">
                       <mat-label>Content</mat-label>
-                      <textarea matInput></textarea>
+                      <textarea name="content" matInput></textarea>
                       <mat-error>This field is required</mat-error>
                     </mat-form-field>
                   </div>
@@ -89,3 +90,5 @@
 <button class="moveUpBtn" (click)="moveUp()">
   <mat-icon>arrow_upward</mat-icon>
 </button>
+
+<ngx-loading *ngIf="loading" [show]="loading"></ngx-loading>
