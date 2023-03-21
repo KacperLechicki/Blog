@@ -43,8 +43,7 @@
                 <td>
                   <button class="btn btn-success" (click)="onEdit(category.data.category, category.idID)"><i
                       class="fas fa-pen"></i></button>
-                  <button class="btn btn-danger" (click)="onDelete(category.idID)"><i
-                      class="fas fa-trash"></i></button>
+                  <button class="btn btn-danger" (click)="onDelete(category.idID)"><i class="fas fa-trash"></i></button>
                 </td>
               </tr>
             </tbody>
@@ -55,3 +54,5 @@
     <div class="col-md-1"></div>
   </div>
 </div>
+
+<ngx-loading *ngIf="loading" [show]="loading"></ngx-loading>

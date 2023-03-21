@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LoadingService } from './services/loading.service';
 
 @Component({
   selector: 'app-root',
@@ -7,12 +8,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Blog';
-  public loading = true;
+
+  constructor(private loadingS: LoadingService) {}
+  public loading: boolean = false;
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     window.scrollTo(0, 0);
-    this.loading = false;
   }
 }

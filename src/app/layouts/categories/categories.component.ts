@@ -7,6 +7,7 @@ import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Category } from 'src/app/models/category';
 import { CategoriesService } from 'src/app/services/categories.service';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-categories',
@@ -19,22 +20,26 @@ export class CategoriesComponent {
   categoryVal: string = '';
   formStatus: string = 'Add';
   categoryId!: string;
+  loading: boolean = false;
 
   constructor(
     private categoriesService: CategoriesService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private loadingS: LoadingService
   ) {}
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
+    this.loading = this.loadingS.loadingStart();
+
     this.categoryForm = this.formBuilder.group({
       category: ['', Validators.required],
     });
 
     this.categoriesService.loadData().subscribe((val: any) => {
-      console.log(val);
       this.categoryArray = val;
+      this.loading = this.loadingS.loadingStop();
     });
   }
 
@@ -46,11 +51,15 @@ export class CategoriesComponent {
       this.categoryForm.controls['category'].value != ''
     ) {
       if (this.formStatus === 'Add') {
+        this.loading = this.loadingS.loadingStart();
         this.categoriesService.saveData(categoryData);
         this.categoryForm.reset();
+        this.loading = this.loadingS.loadingStop();
       } else {
+        this.loading = this.loadingS.loadingStart();
         this.categoriesService.updateData(this.categoryId, categoryData);
         this.formStatus = 'Add';
+        this.loading = this.loadingS.loadingStop();
       }
     } else {
       console.log('invalid');
@@ -64,6 +73,8 @@ export class CategoriesComponent {
   }
 
   onDelete(id: string): void {
+    this.loading = this.loadingS.loadingStart();
     this.categoriesService.deleteData(id);
+    this.loading = this.loadingS.loadingStop();
   }
 }

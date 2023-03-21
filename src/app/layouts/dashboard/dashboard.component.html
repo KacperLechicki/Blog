@@ -2,12 +2,44 @@
   <button class="sub_btn" [routerLink]="['/posts']" routerLinkActive="router-link-active"
     mat-stroked-button><mat-icon>arrow_back</mat-icon>Back to Posts</button>
   <div class="row">
-    <div class="col-md-6 mb-5">
+    <div class="col-md-5 mb-2">
       <div class="card" [routerLink]="['/categories']" routerLinkActive="router-link-active">
         <div class="card-body">
           <i class="fas fa-clipboard-list"></i>
           <h2>Category</h2>
-          <p>Manage Your Category Details</p>
+          <p>Manage Categories</p>
+          <hr>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5 mb-2">
+      <div class="card" [routerLink]="['/categories']" routerLinkActive="router-link-active">
+        <div class="card-body">
+          <i class="fa-solid fa-pen-nib"></i>
+          <h2>Posts</h2>
+          <p>Manage Posts</p>
+          <hr>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-5 mb-2">
+      <div class="card" [routerLink]="['/categories']" routerLinkActive="router-link-active">
+        <div class="card-body">
+          <i class="fa-solid fa-user"></i>
+          <h2>Subscribers</h2>
+          <p>Manage Subscribers</p>
+          <hr>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5 mb-2">
+      <div class="card" [routerLink]="['/categories']" routerLinkActive="router-link-active">
+        <div class="card-body">
+          <i class="fa-solid fa-comment"></i>
+          <h2>Comments</h2>
+          <p>Manage Comments</p>
           <hr>
         </div>
       </div>
