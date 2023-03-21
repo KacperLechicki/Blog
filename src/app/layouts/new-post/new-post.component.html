@@ -49,8 +49,9 @@
                     <mat-form-field appearance="outline">
                       <mat-label>Post Category</mat-label>
                       <mat-select name="category" appearance="outline">
+                        <mat-option disabled>-- select a category --</mat-option>
                         <mat-option *ngFor="let category of categoryArray"
-                          value="category">{{category.data.category}}</mat-option>
+                          value="category.data.category">{{category.data.category}}</mat-option>
                       </mat-select>
                     </mat-form-field>
 
@@ -68,11 +69,7 @@
               <div class="col-md-12">
                 <div class="card2">
                   <div class="card-body">
-                    <mat-form-field class="mb-3 example-full-width" appearance="outline">
-                      <mat-label>Content</mat-label>
-                      <textarea name="content" matInput></textarea>
-                      <mat-error>This field is required</mat-error>
-                    </mat-form-field>
+                    <angular-editor matInput name="content" placeholder="Your Content"></angular-editor>
                   </div>
                 </div>
 

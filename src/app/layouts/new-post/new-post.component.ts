@@ -12,6 +12,7 @@ export class NewPostComponent {
   categoryArray: any[] = [];
   loading: boolean = false;
   imgSrc: any = './assets/placeholder-img.jpg';
+  selectedImg: any = '';
 
   constructor(
     private categoriesService: CategoriesService,
@@ -35,12 +36,14 @@ export class NewPostComponent {
 
   showPreview($event: any): void {
     const reader = new FileReader();
+    window.scrollTo(0, 0);
     this.loading = this.loadingS.loadingStart();
     reader.onload = (e: any) => {
       this.imgSrc = e.target.result;
     };
 
     reader.readAsDataURL($event.target.files[0]);
+    this.selectedImg = $event.target.files[0];
 
     setTimeout(() => {
       this.loading = this.loadingS.loadingStop();

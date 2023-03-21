@@ -141,6 +141,52 @@ mat-form-field {
   box-shadow: none !important;
 }
 
+.angular-editor-toolbar {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  padding: 10px !important;
+  background-color: rgb(214, 212, 212) !important;
+  border-radius: 8px !important;
+
+  button {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 3px !important;
+    max-height: 30px !important;
+    min-height: 30px !important;
+    min-width: 30px !important;
+    border-radius: 3px !important;
+
+    i {
+      font-size: 1.2rem !important;
+      &::after {
+        display: none !important;
+      }
+    }
+  }
+
+  button.ae-picker-label {
+    padding: 4px !important;
+    font-size: 1rem !important;
+  }
+
+  .angular-editor-toolbar-set {
+    display: flex !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    flex-wrap: wrap !important;
+  }
+}
+
+.angular-editor-textarea {
+  max-height: 500px !important;
+  min-height: 280px !important;
+  border-radius: 8px !important;
+  color: black !important;
+  background-color: whitesmoke !important;
+}
+
 //----------------------------------------------------------------
 //----------------------------------------------------------------
 //----------------------------------------------------------------

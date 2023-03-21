@@ -18,6 +18,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 
+import { HttpClientModule } from '@angular/common/http';
+import { AngularEditorModule } from '@kolkov/angular-editor';
+
 import { ToastrModule } from 'ngx-toastr';
 
 import { NgxLoadingModule } from 'ngx-loading';
@@ -77,6 +80,8 @@ import { MatSelectModule } from '@angular/material/select';
     provideFirestore(() => getFirestore()),
     ToastrModule.forRoot({ timeOut: 3000, preventDuplicates: true }),
     MatSelectModule,
+    HttpClientModule,
+    AngularEditorModule,
   ],
   providers: [AppComponent],
   bootstrap: [AppComponent],
