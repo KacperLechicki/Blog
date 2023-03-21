@@ -31,6 +31,7 @@ export class CategoriesComponent {
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
+    window.scrollTo(0, 0);
     this.loading = this.loadingS.loadingStart();
 
     this.categoryForm = this.formBuilder.group({
@@ -39,7 +40,9 @@ export class CategoriesComponent {
 
     this.categoriesService.loadData().subscribe((val: any) => {
       this.categoryArray = val;
-      this.loading = this.loadingS.loadingStop();
+      setTimeout(() => {
+        this.loading = this.loadingS.loadingStop();
+      }, 1000);
     });
   }
 
