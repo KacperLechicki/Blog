@@ -9,35 +9,36 @@
           <p>From here you can add your new post.</p>
           <hr>
 
-          <form action="">
+          <form action="" [formGroup]="postForm">
             <div class="row">
               <div class="col-md-7">
                 <div class="card2">
                   <div class="card-body">
                     <mat-form-field class="mb-3 example-form-field" appearance="outline">
                       <mat-label>Title</mat-label>
-                      <input matInput name="title" type="text" (keyup)="onTitleChange($event)">
+                      <input formControlName="title" matInput name="title" type="text" (keyup)="onTitleChange($event)">
                       <button matSuffix mat-icon-button aria-label="Clear">
                         <mat-icon>close</mat-icon>
                       </button>
-                      <mat-error>This field is
+                      <mat-error *ngIf="postForm.controls['title'].hasError('required')">This field is
                         required</mat-error>
                     </mat-form-field>
 
                     <mat-form-field class="mb-3 example-form-field" appearance="outline">
                       <mat-label>Permalink</mat-label>
-                      <input matInput name="permalink" type="text" [ngModel]="permalink">
+                      <input formControlName="permalink" matInput name="permalink" type="text" [ngModel]="permalink">
                       <button matSuffix mat-icon-button aria-label="Clear">
                         <mat-icon>close</mat-icon>
                       </button>
-                      <mat-error>This field is
+                      <mat-error *ngIf="postForm.controls['permalink'].hasError('required')">This field is
                         required</mat-error>
                     </mat-form-field>
 
                     <mat-form-field class="mb-3 example-full-width" appearance="outline">
                       <mat-label>Excerpt</mat-label>
-                      <textarea name="excerpt" matInput></textarea>
-                      <mat-error>This field is required</mat-error>
+                      <textarea formControlName="excerpt" name="excerpt" matInput></textarea>
+                      <mat-error *ngIf="postForm.controls['excerpt'].hasError('required')">This field is
+                        required</mat-error>
                     </mat-form-field>
                   </div>
                 </div>
@@ -48,17 +49,20 @@
                   <div class="card-body">
                     <mat-form-field appearance="outline">
                       <mat-label>Post Category</mat-label>
-                      <mat-select name="category" appearance="outline">
+                      <mat-select formControlName="category" name="category" appearance="outline">
                         <mat-option disabled>-- select a category --</mat-option>
                         <mat-option *ngFor="let category of categoryArray"
                           value="category.data.category">{{category.data.category}}</mat-option>
                       </mat-select>
+                      <mat-error *ngIf="postForm.controls['category'].hasError('required')">This field is
+                        required</mat-error>
                     </mat-form-field>
 
                     <div class="fileGroup">
                       <label class="fileLabel" for="image">Post Image</label>
                       <img [src]="imgSrc" class="formc-control img-fluid img-preview">
-                      <input name="image" type="file" class="fileInput" accept="image/*" (change)="showPreview($event)">
+                      <input formControlName="image" name="image" type="file" class="fileInput" accept="image/*"
+                        (change)="showPreview($event)">
                     </div>
                   </div>
                 </div>
@@ -69,12 +73,11 @@
               <div class="col-md-12">
                 <div class="card2">
                   <div class="card-body">
-                    <angular-editor matInput name="content" placeholder="Your Content"></angular-editor>
+                    <angular-editor formControlName="content" matInput name="content"></angular-editor>
                   </div>
                 </div>
 
-                <button mat-stroked-button class="sub_btn mt-5 mb-0" [routerLink]="['/allPosts']"
-                  routerLinkActive="router-link-active">Save Post</button>
+                <button mat-stroked-button class="sub_btn mt-5 mb-0" (click)="onSubmit()">Save Post</button>
               </div>
             </div>
           </form>
