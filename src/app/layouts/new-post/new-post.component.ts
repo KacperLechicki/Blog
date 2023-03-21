@@ -16,7 +16,7 @@ export class NewPostComponent {
   categoryArray: any[] = [];
   loading: boolean = false;
   imgSrc: any = './assets/placeholder-img.jpg';
-  selectedImg: any = '';
+  selectedImg!: any;
   postForm!: FormGroup;
   submitTry: boolean = false;
   post: any;

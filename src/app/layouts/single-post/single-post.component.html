@@ -8,7 +8,6 @@
         <div class="card-body">
           <div class="tags mt-2">
             <small *ngIf="postData" class="text-center">#{{postData.category.category}}</small>
-            <small *ngIf="postData" class="text-center views">Views - {{postData.views}}</small>
             <small *ngIf="postData" class="updated text-center">LAST UPDATED - {{postData.createdAt.toMillis() |
               date}},</small>
           </div>

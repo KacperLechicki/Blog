@@ -6,7 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { map, Observable } from 'rxjs';
 import { DocumentData } from '@firebase/firestore-types';
 import { Router } from '@angular/router';
-
+import * as firestore from '@angular/fire/compat/firestore'
 @Injectable({
   providedIn: 'root',
 })
