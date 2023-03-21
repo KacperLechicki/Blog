@@ -52,7 +52,7 @@
                       <mat-select formControlName="category" name="category" appearance="outline">
                         <mat-option disabled>-- select a category --</mat-option>
                         <mat-option *ngFor="let category of categoryArray"
-                          value="category.data.category">{{category.data.category}}</mat-option>
+                          value="{{category.idID}}-{{category.data.category}}">{{category.data.category}}</mat-option>
                       </mat-select>
                       <mat-error *ngIf="postForm.controls['category'].hasError('required')">This field is
                         required</mat-error>

@@ -20,6 +20,7 @@ import { FormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 
 import { ToastrModule } from 'ngx-toastr';
 
@@ -82,6 +83,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatSelectModule,
     HttpClientModule,
     AngularEditorModule,
+    AngularFireStorageModule,
   ],
   providers: [AppComponent],
   bootstrap: [AppComponent],

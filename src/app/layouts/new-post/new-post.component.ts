@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Post } from 'src/app/models/post';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { LoadingService } from 'src/app/services/loading.service';
+import { PostsService } from 'src/app/services/posts.service';
 
 @Component({
   selector: 'app-new-post',
@@ -20,7 +22,8 @@ export class NewPostComponent {
   constructor(
     private categoriesService: CategoriesService,
     private loadingS: LoadingService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private postService: PostsService
   ) {}
 
   ngOnInit(): void {
@@ -65,10 +68,30 @@ export class NewPostComponent {
 
   onSubmit(): void {
     window.scrollTo(0, 0);
-    const formData = this.postForm.value;
+
+    let splittedCategory = this.postForm.value.category.split('-');
+
+    const formData: Post = {
+      title: this.postForm.value.title,
+      permalink: this.postForm.value.permalink,
+      category: {
+        idID: splittedCategory[0],
+        category: splittedCategory[1],
+      },
+      image: '',
+      excerpt: this.postForm.value.excerpt,
+      content: this.postForm.value.content,
+      isFeatured: false,
+      views: 0,
+      status: 'new',
+      createdAt: new Date(),
+    };
+
     if (this.postForm.valid) {
       this.loading = this.loadingS.loadingStart();
-      console.log(formData);
+
+      this.postService.uploadImage(this.selectedImg, formData);
+
       setTimeout(() => {
         this.imgSrc = './assets/placeholder-img.jpg';
         this.submitTry = false;
