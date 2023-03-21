@@ -120,4 +120,8 @@ export class PostsService {
         })
       );
   }
+
+  loadOnePost(postID: any): any {
+    return this.fs.doc(`posts/${postID}`).valueChanges();
+  }
 }

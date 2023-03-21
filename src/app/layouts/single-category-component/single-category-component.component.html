@@ -1,6 +1,11 @@
 <app-category-nav></app-category-nav>
 
 <div class="container">
+  <button class="sub_btn" [routerLink]="['/posts']" routerLinkActive="router-link-active"
+    mat-stroked-button><mat-icon>arrow_back</mat-icon>Back to All Posts</button>
+</div>
+
+<div class="container">
   <app-post-card [postData]="post" *ngFor="let post of postArray"></app-post-card>
 </div>
 <button class="moveUpBtn" (click)="moveUp()">

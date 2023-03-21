@@ -4,36 +4,18 @@
   <div class="row">
     <div class="col-xl-9 col-md-12">
       <div class="card">
-        <img src="https://cdn.pixabay.com/photo/2015/10/30/20/13/sunrise-1014712_960_720.jpg" alt=""
-          class="card-img-top img-fluid">
+        <img src="{{postData.postImgPath}}" alt="" class="card-img-top img-fluid">
         <div class="card-body">
           <div class="tags mt-2">
-            <small class="text-center">#Design</small>
-            <small class="text-center">#Featured</small>
-            <small class="text-center views">Views - 100,256</small>
-            <small class="updated text-center">LAST UPDATED - SEP 20, 2021</small>
+            <small class="text-center">#{{postData.category}}</small>
+            <small class="text-center views">Views - {{postData.views}}</small>
+            <small class="updated text-center">LAST UPDATED - {{postData.createdAt.toMillis() |
+              date}},</small>
           </div>
 
-          <h1 class="mt-5">HOW TO START A BLOG IN 2021 EDITED NEW CATEGORY</h1>
+          <h1 class="mt-5">{{postData.title}}</h1>
           <hr>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In molestiae aliquid incidunt neque enim, minima
-            modi veniam similique dolor nam perspiciatis nesciunt quo totam odio deserunt consequuntur voluptate
-            inventore illum deleniti possimus nisi.
-            <br>
-            <br>
-            Recusandae atque iste debitis sit cum, natus magnam quisquam nobis! Iusto debitis perspiciatis voluptas
-            nulla. Dolore unde cumque repudiandae dolores id ipsum totam molestiae ut eaque rem consequuntur fuga beatae
-            facilis necessitatibus enim, quisquam eos eum debitis, libero magnam similique! Soluta dolorem eveniet,
-            tempora ab possimus iste aliquid magni ducimus quod ea ullam dolor cum blanditiis similique voluptate
-            deleniti velit ex corrupti eligendi eos autem iusto unde sapiente. Cumque qui unde architecto pariatur
-            quisquam.
-            <br>
-            <br>
-            Voluptatem temporibus animi modi magnam eius accusantium, sint corrupti maiores sed atque error similique!
-            Perspiciatis blanditiis, harum veniam itaque sapiente cumque vero nesciunt ea debitis. Non ratione possimus
-            voluptatem, accusantium repellendus aliquid odit facilis iusto facere eligendi inventore molestiae animi
-            totam labore quis?
-          </p>
+          <p [innerHtml]="postData.content"></p>
         </div>
       </div>
       <app-comment-form></app-comment-form>
@@ -41,7 +23,7 @@
     </div>
     <div class="col-xl-3">
       <div class="cards">
-        <app-post-card *ngIf="postData"></app-post-card>
+        <app-post-card></app-post-card>
       </div>
     </div>
     <button class="moveUpBtn" (click)="moveUp()">
@@ -54,4 +36,3 @@
 <app-subscription-form></app-subscription-form>
 
 <ngx-loading *ngIf="loading" [show]="loading"></ngx-loading>
-
