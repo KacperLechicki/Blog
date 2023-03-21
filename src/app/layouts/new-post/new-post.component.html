@@ -16,7 +16,7 @@
                   <div class="card-body">
                     <mat-form-field class="mb-3 example-form-field" appearance="outline">
                       <mat-label>Title</mat-label>
-                      <input matInput name="category" type="text">
+                      <input matInput name="category" type="text" (keyup)="onTitleChange($event)">
                       <button matSuffix mat-icon-button aria-label="Clear">
                         <mat-icon>close</mat-icon>
                       </button>
@@ -55,7 +55,7 @@
                     </mat-form-field>
 
                     <div class="fileGroup">
-                      <label for="">Post Image</label>
+                      <label class="fileLabel" for="">Post Image</label>
                       <input type="file" class="fileInput">
                     </div>
                   </div>

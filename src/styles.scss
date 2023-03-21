@@ -83,6 +83,14 @@ mat-card {
   }
 }
 
+.mat-mdc-form-field-has-icon-suffix .mat-mdc-text-field-wrapper {
+  height: 56px !important;
+}
+
+.container[_ngcontent-uih-c24] button[_ngcontent-uih-c24] {
+  margin-top: 0 !important;
+}
+
 mat-form-field {
   .mdc-text-field--outlined .mdc-notched-outline {
     font-size: 1.6rem !important;

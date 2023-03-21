@@ -6,6 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./new-post.component.scss'],
 })
 export class NewPostComponent {
+  onTitleChange($event: any) {
+    console.log($event);
+  }
+
   moveUp(): void {
     window.scrollTo(0, 0);
   }
