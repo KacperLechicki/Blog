@@ -64,12 +64,18 @@ export class NewPostComponent {
   }
 
   onSubmit(): void {
+    window.scrollTo(0, 0);
     const formData = this.postForm.value;
     if (this.postForm.valid) {
+      this.loading = this.loadingS.loadingStart();
       console.log(formData);
+      setTimeout(() => {
+        this.imgSrc = './assets/placeholder-img.jpg';
+        this.submitTry = false;
+        this.loading = this.loadingS.loadingStop();
+      }, 1000);
+      this.postForm.reset();
     } else {
-      window.scrollTo(0, 0);
-      console.log('invalid');
       this.submitTry = true;
     }
   }

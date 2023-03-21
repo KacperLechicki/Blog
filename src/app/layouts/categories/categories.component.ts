@@ -21,6 +21,7 @@ export class CategoriesComponent {
   formStatus: string = 'Add';
   categoryId!: string;
   loading: boolean = false;
+  submitTry: boolean = false;
 
   constructor(
     private categoriesService: CategoriesService,
@@ -53,19 +54,27 @@ export class CategoriesComponent {
       this.categoryForm.valid &&
       this.categoryForm.controls['category'].value != ''
     ) {
+      window.scrollTo(0, 0);
       if (this.formStatus === 'Add') {
         this.loading = this.loadingS.loadingStart();
-        this.categoriesService.saveData(categoryData);
+        setTimeout(() => {
+          this.categoriesService.saveData(categoryData);
+          this.submitTry = false;
+          this.loading = this.loadingS.loadingStop();
+        }, 1000);
         this.categoryForm.reset();
-        this.loading = this.loadingS.loadingStop();
       } else {
         this.loading = this.loadingS.loadingStart();
-        this.categoriesService.updateData(this.categoryId, categoryData);
         this.formStatus = 'Add';
+        setTimeout(() => {
+          this.categoriesService.updateData(this.categoryId, categoryData);
+          this.submitTry = false;
+          this.loading = this.loadingS.loadingStop();
+        }, 1000);
         this.categoryForm.reset();
-        this.loading = this.loadingS.loadingStop();
       }
     } else {
+      this.submitTry = true;
       console.log('invalid');
     }
   }
@@ -77,9 +86,12 @@ export class CategoriesComponent {
   }
 
   onDelete(id: string): void {
+    window.scrollTo(0, 0);
     this.loading = this.loadingS.loadingStart();
-    this.categoriesService.deleteData(id);
-    this.loading = this.loadingS.loadingStop();
+    setTimeout(() => {
+      this.categoriesService.deleteData(id);
+      this.loading = this.loadingS.loadingStop();
+    }, 1000);
   }
 
   moveUp(): void {

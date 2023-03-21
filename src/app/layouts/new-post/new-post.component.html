@@ -58,13 +58,15 @@
                         required</mat-error>
                     </mat-form-field>
 
-                    <div class="fileGroup" [ngClass]="{'imgInvalid': postForm.controls['image'].hasError('required') && submitTry}">
+                    <div class="fileGroup"
+                      [ngClass]="{'imgInvalid': postForm.controls['image'].hasError('required') && submitTry}">
                       <label class="fileLabel" for="image">Post Image</label>
                       <img [src]="imgSrc" class="formc-control img-fluid img-preview">
                       <input formControlName="image" name="image" type="file" class="fileInput" accept="image/*"
                         (change)="showPreview($event)">
                     </div>
-                    <small class="mt-2 errorMsg" *ngIf="postForm.controls['image'].hasError('required') && submitTry">This field is
+                    <small class="mt-2 errorMsg"
+                      *ngIf="postForm.controls['image'].hasError('required') && submitTry">This field is
                       required</small>
                   </div>
                 </div>
@@ -74,14 +76,17 @@
             <div class="row mt-5">
               <div class="col-md-12">
                 <div class="card2">
-                  <div class="card-body" [ngClass]="{'imgInvalid': postForm.controls['content'].hasError('required') && submitTry}">
+                  <div class="card-body"
+                    [ngClass]="{'imgInvalid': postForm.controls['content'].hasError('required') && submitTry}">
                     <angular-editor formControlName="content" matInput name="content"></angular-editor>
                   </div>
-                  <small class="mt-5 errorMsg" *ngIf="postForm.controls['content'].hasError('required') && submitTry">This field is
+                  <small class="mt-5 errorMsg"
+                    *ngIf="postForm.controls['content'].hasError('required') && submitTry">This field is
                     required</small>
                 </div>
 
-                <button mat-stroked-button class="sub_btn mt-5 mb-0" (click)="onSubmit()">Save Post</button>
+                <button mat-stroked-button class="sub_btn mt-5 mb-0" [disabled]="postForm.invalid"
+                  (click)="onSubmit()">Save Post</button>
               </div>
             </div>
           </form>
