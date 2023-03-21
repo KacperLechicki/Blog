@@ -8,15 +8,16 @@ import { HomeComponent } from './layouts/home/home.component';
 import { NewPostComponent } from './layouts/new-post/new-post.component';
 import { PostComponent } from './layouts/post/post.component';
 import { SinglePostComponent } from './layouts/single-post/single-post.component';
+import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'posts', component: PostComponent },
   { path: 'singlePost', component: SinglePostComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'categories', component: CategoriesComponent },
-  { path: 'allPosts', component: AllPostsComponent },
-  { path: 'allPosts/new', component: NewPostComponent },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'categories', component: CategoriesComponent, canActivate: [AuthGuard] },
+  { path: 'allPosts', component: AllPostsComponent, canActivate: [AuthGuard] },
+  { path: 'allPosts/new', component: NewPostComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
 ];
 

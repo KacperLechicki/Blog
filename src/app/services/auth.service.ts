@@ -7,6 +7,8 @@ import { ToastrService } from 'ngx-toastr';
   providedIn: 'root',
 })
 export class AuthService {
+  loginGuard: boolean = false;
+
   constructor(
     private afAuth: AngularFireAuth,
     private toastr: ToastrService,
@@ -19,6 +21,7 @@ export class AuthService {
       .then((logRef) => {
         this.toastr.success('Logged in successfully');
         this.loadUser();
+        this.loginGuard = true;
         setTimeout(() => {
           this.router.navigate(['/dashboard']);
         });
