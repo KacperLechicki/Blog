@@ -35,7 +35,6 @@ export class CommentFormComponent {
       createdAt: new Date(),
     };
     if (this.commentForm.valid) {
-      window.scrollTo(0, 0);
       this.loading = this.loadingS.loadingStart();
       this.comService.saveData(comData);
       setTimeout(() => {

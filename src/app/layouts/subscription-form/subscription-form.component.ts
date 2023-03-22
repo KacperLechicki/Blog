@@ -36,7 +36,6 @@ export class SubscriptionFormComponent {
   onSubmit(): void {
     let subData: Subscriber = this.subscriptionForm.value;
     if (this.subscriptionForm.valid) {
-      window.scrollTo(0, 0);
       this.loading = this.loadingS.loadingStart();
       this.subService.saveData(subData);
       setTimeout(() => {
