@@ -23,9 +23,7 @@ export class SingleCategoryComponent {
     //Add 'implements OnInit' to the class.
     this.loading = this.loadingS.loadingStart();
     this.route.params.subscribe((val) => {
-      console.log(val);
       this.postService.loadCategoryPosts(val['id']).subscribe((post: any) => {
-        console.log(post);
         this.postArray = post;
       });
       setTimeout(() => {

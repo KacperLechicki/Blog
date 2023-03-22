@@ -27,10 +27,7 @@ export class SubscriptionFormComponent {
 
   onSubmit(): void {
     if (this.subscriptionForm.valid) {
-      console.log(this.subscriptionForm.value);
       this.subscriptionForm.reset();
-    } else {
-      console.log('invalid');
     }
   }
 }

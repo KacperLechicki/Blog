@@ -22,10 +22,7 @@ export class CommentFormComponent {
 
   onSubmit(): void {
     if (this.commentForm.valid) {
-      console.log(this.commentForm.value);
       this.commentForm.reset();
-    } else {
-      console.log('invalid');
     }
   }
 }

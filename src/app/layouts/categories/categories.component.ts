@@ -75,7 +75,6 @@ export class CategoriesComponent {
       }
     } else {
       this.submitTry = true;
-      console.log('invalid');
     }
   }
 

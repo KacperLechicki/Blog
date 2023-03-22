@@ -27,7 +27,6 @@ export class SinglePostComponent {
     window.scrollTo(0, 0);
     this.route.params.subscribe((data: any) => {
       this.postService.loadOnePost(data['id']).subscribe((post: any) => {
-        console.log(post);
         this.postData = post;
         this.loadSimilarPost(this.postData.category.idID);
       });

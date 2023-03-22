@@ -73,6 +73,7 @@ import { SingleCategoryComponent } from './layouts/single-category-component/sin
       primaryColour: 'hsl(224, 67%, 63%)',
       secondaryColour: 'hsl(224, 67%, 63%)',
       tertiaryColour: 'hsl(224, 67%, 63%)',
+      backdropBackgroundColour: 'transparent',
     }),
     MatChipsModule,
     MatCardModule,
@@ -89,7 +90,7 @@ import { SingleCategoryComponent } from './layouts/single-category-component/sin
     HttpClientModule,
     AngularEditorModule,
     AngularFireStorageModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
   ],
   providers: [AppComponent],
   bootstrap: [AppComponent],
