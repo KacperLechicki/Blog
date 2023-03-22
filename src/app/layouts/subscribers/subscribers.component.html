@@ -10,17 +10,19 @@
             <thead>
               <tr>
                 <th>No</th>
-                <th>Category</th>
+                <th>Email</th>
+                <th>Name</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let category of categoryArray; let i = index">
+              <tr *ngFor="let subscriber of subscribersArray; let i = index">
                 <td>{{i + 1}}</td>
-                <td>{{category.data.category}}</td>
+                <td>{{subscriber.data.email}}</td>
+                <td>{{subscriber.data.name}}</td>
                 <td class="tdAction">
-                  <button class="btn btn-success"><i class="fas fa-pen"></i></button>
-                  <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                  <button class="btn btn-danger" (click)="onDelete(subscriber.idID)"><i
+                      class="fas fa-trash"></i></button>
                 </td>
               </tr>
             </tbody>

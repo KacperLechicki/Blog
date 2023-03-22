@@ -38,8 +38,8 @@ export class SubscriptionFormComponent {
     if (this.subscriptionForm.valid) {
       window.scrollTo(0, 0);
       this.loading = this.loadingS.loadingStart();
+      this.subService.saveData(subData);
       setTimeout(() => {
-        this.subService.saveData(subData);
         this.loading = this.loadingS.loadingStop();
       }, 1000);
       this.subscriptionForm.reset();

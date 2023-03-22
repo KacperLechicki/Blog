@@ -40,16 +40,6 @@ export class SubscribersService {
       );
   }
 
-  updateData(id: string, editData: any): void {
-    this.fs
-      .collection('subscribers')
-      .doc(id)
-      .update(editData)
-      .then(() => {
-        this.toastr.success('Data updated successfully');
-      });
-  }
-
   deleteData(id: string): void {
     this.fs
       .collection('subscribers')

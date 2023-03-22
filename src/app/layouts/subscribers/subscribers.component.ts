@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { LoadingService } from 'src/app/services/loading.service';
+import { SubscribersService } from 'src/app/services/subscribers.service';
 
 @Component({
   selector: 'app-subscribers',
@@ -8,14 +9,11 @@ import { LoadingService } from 'src/app/services/loading.service';
   styleUrls: ['./subscribers.component.scss'],
 })
 export class SubscribersComponent {
-  categoryArray: any = [];
-  categoryVal: string = '';
-  formStatus: string = 'Add';
-  categoryId!: string;
+  subscribersArray: any = [];
   loading: boolean = false;
 
   constructor(
-    private categoriesService: CategoriesService,
+    private subService: SubscribersService,
     private loadingS: LoadingService
   ) {}
 
@@ -24,12 +22,21 @@ export class SubscribersComponent {
     //Add 'implements OnInit' to the class.
     window.scrollTo(0, 0);
     this.loading = this.loadingS.loadingStart();
-    this.categoriesService.loadData().subscribe((val: any) => {
-      this.categoryArray = val;
+    this.subService.loadData().subscribe((val: any) => {
+      this.subscribersArray = val;
       setTimeout(() => {
         this.loading = this.loadingS.loadingStop();
       }, 1000);
     });
+  }
+
+  onDelete(id:string):void {
+    window.scrollTo(0, 0);
+    this.loading = this.loadingS.loadingStart();
+    setTimeout(() => {
+      this.subService.deleteData(id);
+      this.loading = this.loadingS.loadingStop();
+    }, 1000);
   }
 
   moveUp(): void {
