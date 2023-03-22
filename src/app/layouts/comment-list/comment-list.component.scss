@@ -41,24 +41,6 @@
         p {
           font-size: 1.4rem;
         }
-
-        a {
-          position: relative;
-          margin-right: 10px;
-          font-size: 1.4rem;
-          text-decoration: none;
-          color: rgb(72, 101, 180);
-
-          &::before {
-            @include nav_underline;
-            bottom: -5px;
-            transition: width 0.3s;
-          }
-        }
-
-        a:hover::before {
-          width: 100%;
-        }
       }
     }
   }
