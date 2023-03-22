@@ -2,22 +2,22 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { QueryDocumentSnapshot } from 'firebase/firestore';
 import { ToastrService } from 'ngx-toastr';
-import { map } from 'rxjs';
-import { Category } from '../models/category';
+import { Subscriber } from '../models/subscriber';
 import { DocumentData } from '@firebase/firestore-types';
+import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class CategoriesService {
+export class SubscribersService {
   constructor(private fs: AngularFirestore, private toastr: ToastrService) {}
 
-  saveData(data: Category): void {
+  saveData(data: Subscriber): void {
     this.fs
-      .collection('categories')
+      .collection('subscribers')
       .add(data)
       .then(() => {
-        this.toastr.success('Category added successfully');
+        this.toastr.success('Subscriber added successfully');
       })
       .catch((err: any) => {
         this.toastr.error(err);
@@ -26,12 +26,12 @@ export class CategoriesService {
 
   loadData(): any {
     return this.fs
-      .collection('categories')
+      .collection('subscribers')
       .snapshotChanges()
       .pipe(
         map((actions) => {
           return actions.map((a) => {
-            const data = a.payload.doc.data() as Category[];
+            const data = a.payload.doc.data() as Subscriber[];
             const id = a.payload.doc as QueryDocumentSnapshot<DocumentData>;
             const idID = id.id;
             return { idID, data };
@@ -42,7 +42,7 @@ export class CategoriesService {
 
   updateData(id: string, editData: any): void {
     this.fs
-      .collection('categories')
+      .collection('subscribers')
       .doc(id)
       .update(editData)
       .then(() => {
@@ -52,7 +52,7 @@ export class CategoriesService {
 
   deleteData(id: string): void {
     this.fs
-      .collection('categories')
+      .collection('subscribers')
       .doc(id)
       .delete()
       .then(() => {

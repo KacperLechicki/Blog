@@ -9,6 +9,7 @@ import { NewPostComponent } from './layouts/new-post/new-post.component';
 import { PostComponent } from './layouts/post/post.component';
 import { SingleCategoryComponent } from './layouts/single-category-component/single-category-component.component';
 import { SinglePostComponent } from './layouts/single-post/single-post.component';
+import { SubscribersComponent } from './layouts/subscribers/subscribers.component';
 import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
@@ -33,6 +34,11 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   { path: 'login', component: LoginComponent },
+  {
+    path: 'subscribers',
+    component: SubscribersComponent,
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({

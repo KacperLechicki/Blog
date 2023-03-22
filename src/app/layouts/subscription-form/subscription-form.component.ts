@@ -5,6 +5,9 @@ import {
   FormsModule,
   Validators,
 } from '@angular/forms';
+import { Subscriber } from 'src/app/models/subscriber';
+import { LoadingService } from 'src/app/services/loading.service';
+import { SubscribersService } from 'src/app/services/subscribers.service';
 
 @Component({
   selector: 'app-subscription-form',
@@ -13,8 +16,13 @@ import {
 })
 export class SubscriptionFormComponent {
   subscriptionForm!: FormGroup;
+  loading: boolean = false;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private subService: SubscribersService,
+    private loadingS: LoadingService
+  ) {}
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
@@ -26,7 +34,14 @@ export class SubscriptionFormComponent {
   }
 
   onSubmit(): void {
+    let subData: Subscriber = this.subscriptionForm.value;
     if (this.subscriptionForm.valid) {
+      window.scrollTo(0, 0);
+      this.loading = this.loadingS.loadingStart();
+      setTimeout(() => {
+        this.subService.saveData(subData);
+        this.loading = this.loadingS.loadingStop();
+      }, 1000);
       this.subscriptionForm.reset();
     }
   }
