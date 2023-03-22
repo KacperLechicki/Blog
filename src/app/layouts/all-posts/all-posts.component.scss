@@ -39,7 +39,34 @@
     animation: swing-in-top-fwd 1.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)
       none;
 
-    .card-body {
+    p {
+      font-size: 1.4rem;
+      font-weight: lighter;
+    }
+
+    .sub_btn {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      max-height: 30px;
+      background: none;
+    }
+
+    .card-body2 {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+
+      img {
+        background-size: cover;
+      }
+
       h3 {
         font-size: 2rem;
         font-weight: bold;
@@ -47,28 +74,18 @@
 
       p {
         font-size: 1.4rem;
+        font-weight: lighter;
       }
 
-      .sub_btn {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        max-height: 30px;
-        background: none;
-      }
-
-      .row {
-        display: flex;
-        justify-content: center;
-
+      .col-md-4 {
         mat-card {
           margin-bottom: 30px;
           width: 100%;
+          height: 100%;
+
+          &:last-child {
+            flex: 1;
+          }
 
           img {
             width: 100%;
@@ -99,8 +116,8 @@
             }
 
             .content {
-              margin-bottom: 50px;
-              height: 80px;
+              margin-bottom: 20px;
+              height: 60px;
               overflow: auto;
             }
 

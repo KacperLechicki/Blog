@@ -7,9 +7,7 @@
   width: 100%;
 
   app-post-card {
-    &:last-child {
-      flex: 1;
-    }
+    height: 100%;
   }
 }
 

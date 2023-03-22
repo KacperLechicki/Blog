@@ -20,35 +20,32 @@
   <div class="row">
     <div class="col-md-12">
       <div class="card" *ngIf="postArray.length > 0">
-        <div class="card-body">
-          <div class="row">
-            <div class="col-md-5" *ngFor="let post of postArray; let i = index">
-              <mat-card class="example-card">
-                <img mat-card-image src="{{post.data.postImgPath}}">
-                <mat-card-content>
-                  <div class="tags mt-2">
-                    <small class="text-center">#{{post.data.category.category}}</small>
-                  </div>
+        <div class="card-body2">
+          <div class="col-md-4" *ngFor="let post of postArray; let i = index">
+            <mat-card class="example-card">
+              <img mat-card-image src="{{post.data.postImgPath}}">
+              <mat-card-content>
+                <div class="tags mt-2">
+                  <small class="text-center">#{{post.data.category.category}}</small>
+                </div>
 
-                  <div class="actions mb-3">
-                    <button class="btn btn-success" [routerLink]="['/allPosts/new']"
-                      routerLinkActive="router-link-active" [queryParams]="{id: post.idID}"><i
-                        class="fas fa-pen"></i></button>
-                    <button class="btn btn-danger" (click)="onDelete(post.data.postImgPath, post.idID)"><i
-                        class="fas fa-trash"></i></button>
-                  </div>
+                <div class="actions mb-3">
+                  <button class="btn btn-success" [routerLink]="['/allPosts/new']" routerLinkActive="router-link-active"
+                    [queryParams]="{id: post.idID}"><i class="fas fa-pen"></i></button>
+                  <button class="btn btn-danger" (click)="onDelete(post.data.postImgPath, post.idID)"><i
+                      class="fas fa-trash"></i></button>
+                </div>
 
-                  <h3 class="mt-1"> {{post.data.title}}</h3>
-                  <hr>
-                  <div class="content">
-                    <p>{{post.data.excerpt}}</p>
-                  </div>
+                <h3 class="mt-1"> {{post.data.title}}</h3>
+                <hr>
+                <div class="content">
+                  <p>{{post.data.excerpt}}</p>
+                </div>
 
-                  <small class="updated text-center ml-3">LAST UPDATED - {{post.data.createdAt.toMillis() |
-                    date}}</small>
-                </mat-card-content>
-              </mat-card>
-            </div>
+                <small class="updated text-center ml-3">LAST UPDATED - {{post.data.createdAt.toMillis() |
+                  date}}</small>
+              </mat-card-content>
+            </mat-card>
           </div>
         </div>
       </div>
