@@ -41,12 +41,38 @@ export class CommentsService {
       );
   }
 
+  getComments(postID: string) {
+    return this.fs
+      .collection('comments', (ref) => ref.where('postID', '==', postID))
+      .snapshotChanges()
+      .pipe(
+        map((actions) => {
+          return actions.map((a: any) => {
+            const data = a.payload.doc.data();
+            return { data };
+          });
+        })
+      );
+  }
+
   deleteData(id: string): void {
     this.fs
       .collection('comments')
       .doc(id)
       .delete()
       .then(() => {
+        this.toastr.success('Data deleted successfully');
+      });
+  }
+
+  deleteSpecificData(id: string): void {
+    this.fs
+      .collection('comments', (ref) => ref.where('postID', '==', id))
+      .get()
+      .subscribe((val) => {
+        val.forEach((doc) => {
+          doc.ref.delete();
+        });
         this.toastr.success('Data deleted successfully');
       });
   }

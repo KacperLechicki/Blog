@@ -13,6 +13,7 @@ export class SinglePostComponent {
   loading: boolean = false;
   postData: any;
   similarPostArray: any[] = [];
+  postID!: string;
 
   constructor(
     private loadingS: LoadingService,
@@ -30,6 +31,10 @@ export class SinglePostComponent {
         this.postData = post;
         this.loadSimilarPost(this.postData.category.idID);
       });
+      const params = this.route.snapshot.params;
+      if (params && params['id']) {
+        this.postID = params['id'];
+      }
       setTimeout(() => {
         this.loading = this.loadingS.loadingStop();
       }, 2000);

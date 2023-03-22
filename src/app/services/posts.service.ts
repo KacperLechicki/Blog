@@ -6,7 +6,8 @@ import { ToastrService } from 'ngx-toastr';
 import { map, Observable } from 'rxjs';
 import { DocumentData } from '@firebase/firestore-types';
 import { Router } from '@angular/router';
-import * as firestore from '@angular/fire/compat/firestore'
+import * as firestore from '@angular/fire/compat/firestore';
+import { CommentsService } from './comments.service';
 @Injectable({
   providedIn: 'root',
 })
@@ -15,7 +16,8 @@ export class PostsService {
     private storage: AngularFireStorage,
     private fs: AngularFirestore,
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    private comService: CommentsService
   ) {}
 
   uploadImage(

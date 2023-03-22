@@ -34,7 +34,11 @@ export class SubscriptionFormComponent {
   }
 
   onSubmit(): void {
-    let subData: Subscriber = this.subscriptionForm.value;
+    let subData: Subscriber = {
+      email: this.subscriptionForm.value.email,
+      name: this.subscriptionForm.value.name,
+      createdAt: new Date()
+    }
     if (this.subscriptionForm.valid) {
       this.loading = this.loadingS.loadingStart();
       this.subService.saveData(subData);

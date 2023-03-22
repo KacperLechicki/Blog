@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CommentsService } from 'src/app/services/comments.service';
 import { LoadingService } from 'src/app/services/loading.service';
 import { PostsService } from 'src/app/services/posts.service';
 
@@ -13,7 +14,8 @@ export class AllPostsComponent {
 
   constructor(
     private postService: PostsService,
-    private loadingS: LoadingService
+    private loadingS: LoadingService,
+    private comService: CommentsService
   ) {}
 
   ngOnInit(): void {
@@ -34,6 +36,7 @@ export class AllPostsComponent {
     this.loading = this.loadingS.loadingStart();
     setTimeout(() => {
       this.postService.deleteImg(postImgPath, id);
+      this.comService.deleteSpecificData(id);
       this.loading = this.loadingS.loadingStop();
     }, 1000);
   }

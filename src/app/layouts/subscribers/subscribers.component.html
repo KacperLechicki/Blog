@@ -12,6 +12,7 @@
                 <th>No</th>
                 <th>Email</th>
                 <th>Name</th>
+                <th>Date</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -20,6 +21,7 @@
                 <td>{{i + 1}}</td>
                 <td>{{subscriber.data.email}}</td>
                 <td>{{subscriber.data.name}}</td>
+                <td>{{subscriber.data.createdAt.toMillis() | date}}</td>
                 <td class="tdAction">
                   <button class="btn btn-danger" (click)="onDelete(subscriber.idID)"><i
                       class="fas fa-trash"></i></button>
