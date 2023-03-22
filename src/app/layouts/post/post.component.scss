@@ -1,13 +1,18 @@
 .container {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   flex-wrap: wrap;
   gap: 30px;
   margin-bottom: 50px;
   width: 100%;
+  flex: 0;
 
   app-post-card {
     height: 100%;
+
+    &:last-child {
+      flex: 1;
+    }
   }
 }
 

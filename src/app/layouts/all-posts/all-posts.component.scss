@@ -61,11 +61,7 @@
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 10px;
-
-      img {
-        background-size: cover;
-      }
+      gap: 20px;
 
       h3 {
         font-size: 2rem;
@@ -78,23 +74,21 @@
       }
 
       .col-md-4 {
+        display: flex;
+        justify-content: center;
+        min-width: 45%;
+
         mat-card {
           margin-bottom: 30px;
-          width: 100%;
           height: 100%;
-
-          &:last-child {
-            flex: 1;
-          }
+          max-width: 300px;
+          overflow: auto;
 
           img {
-            width: 100%;
-            height: 40%;
+            max-height: 200px;
           }
 
           mat-card-content {
-            height: 60%;
-
             h3 {
               max-height: 50px;
               overflow: auto;
@@ -117,7 +111,7 @@
 
             .content {
               margin-bottom: 20px;
-              height: 60px;
+              max-height: 60px;
               overflow: auto;
             }
 
@@ -158,5 +152,29 @@
   &:hover {
     color: rgba(72, 101, 180, 0.7);
     border: 1px solid rgba(72, 101, 180, 0.7);
+  }
+}
+
+@media only screen and (min-width: 300px) and (max-width:332px) {
+  .container {
+    .card {
+      .sub_btn {
+        font-size: 1.1rem !important;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .container {
+    .card {
+      .card-body2 {
+        .col-md-4 {
+          mat-card {
+              min-width: 370px;
+          }
+        }
+      }
+    }
   }
 }
