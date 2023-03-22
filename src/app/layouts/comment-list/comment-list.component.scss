@@ -14,8 +14,9 @@
     padding: 10px;
     background-color: rgb(11, 13, 19);
     border-radius: 8px;
-    overflow: hidden;
+    overflow: auto;
     box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.364);
+    max-height: 500px;
 
     .card-body {
       h4 {

@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
 import { AllPostsComponent } from './layouts/all-posts/all-posts.component';
 import { CategoriesComponent } from './layouts/categories/categories.component';
+import { CommentsComponent } from './layouts/comments/comments.component';
 import { DashboardComponent } from './layouts/dashboard/dashboard.component';
 import { HomeComponent } from './layouts/home/home.component';
 import { NewPostComponent } from './layouts/new-post/new-post.component';
@@ -37,6 +38,11 @@ const routes: Routes = [
   {
     path: 'subscribers',
     component: SubscribersComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'comments',
+    component: CommentsComponent,
     canActivate: [AuthGuard],
   },
 ];

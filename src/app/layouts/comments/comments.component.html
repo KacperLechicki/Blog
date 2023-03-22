@@ -1,1 +1,42 @@
-<p>comments works!</p>
+<div class="container">
+  <button class="sub_btn" [routerLink]="['/dashboard']" routerLinkActive="router-link-active"
+    mat-stroked-button><mat-icon>arrow_back</mat-icon>Back to Dashboard</button>
+  <div class="row mb-5">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+      <div class="card">
+        <div class="card-body">
+          <table class="table row-border hover">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Name</th>
+                <th>Comment</th>
+                <th>Date</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let comment of commentsArray; let i = index">
+                <td>{{i+1}}</td>
+                <td>{{comment.data.name}}</td>
+                <td>{{comment.data.comment}}</td>
+                <td>{{comment.data.createdAt.toMillis() | date}}</td>
+                <td class="tdAction">
+                  <button class="btn btn-danger" (click)="onDelete(comment.idID)"><i class="fas fa-trash"></i></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-1"></div>
+  </div>
+</div>
+
+<button class="moveUpBtn" (click)="moveUp()">
+  <mat-icon>arrow_upward</mat-icon>
+</button>
+
+<ngx-loading *ngIf="loading" [show]="loading"></ngx-loading>
