@@ -32,7 +32,7 @@ export class SinglePostComponent {
       });
       setTimeout(() => {
         this.loading = this.loadingS.loadingStop();
-      }, 1000);
+      }, 2000);
     });
   }
 

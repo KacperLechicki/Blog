@@ -31,6 +31,7 @@ export class NewPostComponent {
     private route: ActivatedRoute,
     private router: Router
   ) {
+    this.loading = this.loadingS.loadingStart();
     this.route.queryParams.subscribe((val) => {
       this.postService.loadPostToEdit(val['id']).subscribe((post: any) => {
         this.docID = val['id'];
@@ -59,6 +60,9 @@ export class NewPostComponent {
             content: ['', Validators.required],
           });
         }
+        setTimeout(() => {
+          this.loading = this.loadingS.loadingStop();
+        }, 1000);
       });
     });
   }
