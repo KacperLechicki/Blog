@@ -17,7 +17,7 @@ export class SubscribersService {
       .collection('subscribers')
       .add(data)
       .then(() => {
-        this.toastr.success('Subscriber added successfully');
+        this.toastr.success('Subscribed successfully');
       })
       .catch((err: any) => {
         this.toastr.error(err);

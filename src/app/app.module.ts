@@ -44,6 +44,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { LoginComponent } from './auth/login/login.component';
 import { SingleCategoryComponent } from './layouts/single-category-component/single-category-component.component';
 import { SubscribersComponent } from './layouts/subscribers/subscribers.component';
+import { CommentsComponent } from './layouts/comments/comments.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { SubscribersComponent } from './layouts/subscribers/subscribers.componen
     LoginComponent,
     SingleCategoryComponent,
     SubscribersComponent,
+    CommentsComponent,
   ],
   imports: [
     BrowserModule,
