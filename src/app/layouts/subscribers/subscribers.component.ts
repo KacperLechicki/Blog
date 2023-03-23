@@ -24,14 +24,18 @@ export class SubscribersComponent {
     this.loading = this.loadingS.loadingStart();
     this.subService.loadData().subscribe((val: any) => {
       this.subscribersArray = val;
-      setTimeout(() => {
-        this.loading = this.loadingS.loadingStop();
-      }, 1000);
     });
   }
 
+  ngAfterViewInit(): void {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
+    setTimeout(() => {
+      this.loading = this.loadingS.loadingStop();
+    }, 2000);
+  }
+
   onDelete(id:string):void {
-    window.scrollTo(0, 0);
     this.loading = this.loadingS.loadingStart();
     setTimeout(() => {
       this.subService.deleteData(id);

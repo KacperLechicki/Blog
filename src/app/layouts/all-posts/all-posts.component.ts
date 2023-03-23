@@ -25,14 +25,18 @@ export class AllPostsComponent {
     this.loading = this.loadingS.loadingStart();
     this.postService.loadData().subscribe((val: any) => {
       this.postArray = val;
-      setTimeout(() => {
-        this.loading = this.loadingS.loadingStop();
-      }, 1000);
     });
   }
 
+  ngAfterViewInit(): void {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
+    setTimeout(() => {
+      this.loading = this.loadingS.loadingStop();
+    }, 1000);
+  }
+
   onDelete(postImgPath: any, id: string): void {
-    window.scrollTo(0, 0);
     this.loading = this.loadingS.loadingStart();
     setTimeout(() => {
       this.postService.deleteImg(postImgPath, id);

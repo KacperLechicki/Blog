@@ -74,10 +74,15 @@ export class NewPostComponent {
     this.loading = this.loadingS.loadingStart();
     this.categoriesService.loadData().subscribe((val: any) => {
       this.categoryArray = val;
-      setTimeout(() => {
-        this.loading = this.loadingS.loadingStop();
-      }, 1000);
     });
+  }
+
+  ngAfterViewInit(): void {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
+    setTimeout(() => {
+      this.loading = this.loadingS.loadingStop();
+    }, 1000);
   }
 
   onTitleChange($event: any): void {
@@ -87,7 +92,6 @@ export class NewPostComponent {
 
   showPreview($event: any): void {
     const reader = new FileReader();
-    window.scrollTo(0, 0);
     this.loading = this.loadingS.loadingStart();
     reader.onload = (e: any) => {
       this.imgSrc = e.target.result;
@@ -135,6 +139,7 @@ export class NewPostComponent {
       this.postForm.reset();
       this.router.navigate(['/allPosts']);
     } else {
+      window.scrollTo(0, 0);
       this.submitTry = true;
     }
   }

@@ -26,10 +26,15 @@ export class SingleCategoryComponent {
       this.postService.loadCategoryPosts(val['id']).subscribe((post: any) => {
         this.postArray = post;
       });
-      setTimeout(() => {
-        this.loading = this.loadingS.loadingStop();
-      }, 1000);
     });
+  }
+
+  ngAfterViewInit(): void {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
+    setTimeout(() => {
+      this.loading = this.loadingS.loadingStop();
+    }, 1000);
   }
 
   moveUp(): void {

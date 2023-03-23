@@ -39,6 +39,7 @@ export class LoginComponent {
   onSubmit(): void {
     if (this.loginForm.valid) {
       this.submitTry = false;
+      this.loading = this.loadingS.loadingStart();
       this.auth.login(
         this.loginForm.controls['email'].value,
         this.loginForm.controls['password'].value

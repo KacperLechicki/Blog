@@ -23,10 +23,15 @@ export class CommentsComponent {
     this.loading = this.loadingS.loadingStart();
     this.comService.loadData().subscribe((val: any) => {
       this.commentsArray = val;
-      setTimeout(() => {
-        this.loading = this.loadingS.loadingStop();
-      }, 1000);
     });
+  }
+
+  ngAfterViewInit(): void {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
+    setTimeout(() => {
+      this.loading = this.loadingS.loadingStop();
+    }, 1000);
   }
 
   onDelete(id:string): void {

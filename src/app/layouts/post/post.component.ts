@@ -24,10 +24,15 @@ export class PostComponent {
     window.scrollTo(0, 0);
     this.postService.loadData().subscribe((val: any) => {
       this.postArray = val;
-      setTimeout(() => {
-        this.loading = this.loadingS.loadingStop();
-      }, 1000);
     });
+  }
+
+  ngAfterViewInit(): void {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
+    setTimeout(() => {
+      this.loading = this.loadingS.loadingStop();
+    }, 1000);
   }
 
   moveUp(): void {
