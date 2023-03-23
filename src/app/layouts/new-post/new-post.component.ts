@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from 'src/app/models/post';
@@ -29,7 +30,8 @@ export class NewPostComponent {
     private formBuilder: FormBuilder,
     private postService: PostsService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private storage: AngularFireStorage
   ) {
     this.loading = this.loadingS.loadingStart();
     this.route.queryParams.subscribe((val) => {
@@ -37,6 +39,7 @@ export class NewPostComponent {
         this.docID = val['id'];
         this.post = post;
         if (this.docID) {
+          this.imgSrc = this.post.postImgPath;
           this.postForm = this.formBuilder.group({
             title: [this.post.title, Validators.required],
             permalink: [this.post.permalink, Validators.required],
