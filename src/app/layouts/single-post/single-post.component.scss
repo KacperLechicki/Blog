@@ -36,6 +36,10 @@
     box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.364);
     animation: scale-in-center 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
+    img {
+      background-color: rgba(245, 245, 245, 0.32);
+    }
+
     .tags {
       display: flex;
       flex-direction: column;

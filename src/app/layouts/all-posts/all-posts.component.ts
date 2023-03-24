@@ -34,6 +34,7 @@ export class AllPostsComponent {
     }, 1000);
   }
 
+
   onDelete(postImgPath: any, id: string): void {
     this.loading = true;
     setTimeout(() => {

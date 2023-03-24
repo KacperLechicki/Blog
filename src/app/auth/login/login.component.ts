@@ -42,7 +42,6 @@ export class LoginComponent {
         this.loginForm.controls['email'].value,
         this.loginForm.controls['password'].value
       );
-      this.loading = false;
     } else {
       this.submitTry = true;
       this.loading = false;

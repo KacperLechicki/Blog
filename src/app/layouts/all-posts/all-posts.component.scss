@@ -81,11 +81,12 @@
         mat-card {
           margin-bottom: 30px;
           height: 100%;
-          max-width: 300px;
+          max-width: 260px;
           overflow: auto;
 
           img {
             max-height: 200px;
+            background-color: rgba(245, 245, 245, 0.312);
           }
 
           mat-card-content {
@@ -155,7 +156,7 @@
   }
 }
 
-@media only screen and (min-width: 300px) and (max-width:332px) {
+@media only screen and (min-width: 300px) and (max-width: 332px) {
   .container {
     .card {
       .sub_btn {
@@ -165,13 +166,30 @@
   }
 }
 
+@media only screen and (min-width: 768px) {
+  .container {
+    .card {
+      .card-body2 {
+        justify-content: space-between;
+
+        mat-card {
+          &:last-child {
+            flex: 1;
+          }
+        }
+      }
+    }
+  }
+}
+
 @media only screen and (min-width: 992px) {
   .container {
     .card {
       .card-body2 {
+        padding: 0 15%;
         .col-md-4 {
           mat-card {
-              min-width: 370px;
+            min-width: 320px;
           }
         }
       }

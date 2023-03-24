@@ -35,7 +35,7 @@ export class NewPostComponent {
         this.docID = val['id'];
         this.post = post;
         if (this.docID) {
-          this.imgSrc = this.post.postImgPath;
+          // this.imgSrc = this.post.postImgPath;
           this.postForm = this.formBuilder.group({
             title: [this.post.title, Validators.required],
             permalink: [this.post.permalink, Validators.required],
@@ -47,7 +47,6 @@ export class NewPostComponent {
             image: ['', Validators.required],
             content: [this.post.content, Validators.required],
           });
-          this.imgSrc = this.post.postImgPath;
           this.formStatus = 'Edit';
         } else {
           this.postForm = this.formBuilder.group({

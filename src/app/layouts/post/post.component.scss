@@ -1,6 +1,6 @@
 .container {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 30px;
   margin-bottom: 50px;
@@ -9,10 +9,6 @@
 
   app-post-card {
     height: 100%;
-
-    &:last-child {
-      flex: 1;
-    }
   }
 }
 
@@ -43,6 +39,12 @@
 @media only screen and (min-width: 768px) {
   .container {
     justify-content: space-between;
+
+    app-post-card {
+      &:last-child {
+        flex: 1;
+      }
+    }
   }
 }
 
