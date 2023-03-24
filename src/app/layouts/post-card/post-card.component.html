@@ -1,4 +1,5 @@
-<mat-card class="example-card" *ngIf="postData" [routerLink]="['/singlePost', postData.idID]" routerLinkActive="router-link-active">
+<mat-card class="example-card" *ngIf="postData" [routerLink]="['/singlePost', postData.idID]"
+  routerLinkActive="router-link-active">
   <img mat-card-image src="{{postData.data.postImgPath}}">
   <mat-card-content class="card-body">
     <div class="tags mt-2 mb-3">
@@ -15,3 +16,5 @@
       date}}</small>
   </mat-card-content>
 </mat-card>
+
+<ngx-loading *ngIf="loading" [show]="loading"></ngx-loading>

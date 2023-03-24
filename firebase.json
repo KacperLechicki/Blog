@@ -1,10 +1,12 @@
 {
   "hosting": {
     "public": "dist/blog",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
     ]
   }
 }

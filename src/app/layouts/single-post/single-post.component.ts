@@ -1,7 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AppComponent } from 'src/app/app.component';
-import { LoadingService } from 'src/app/services/loading.service';
 import { PostsService } from 'src/app/services/posts.service';
 
 @Component({
@@ -16,13 +14,12 @@ export class SinglePostComponent {
   postID!: string;
 
   constructor(
-    private loadingS: LoadingService,
     private postService: PostsService,
     private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.loading = this.loadingS.loadingStart();
+    this.loading = true;
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     window.scrollTo(0, 0);
@@ -42,7 +39,7 @@ export class SinglePostComponent {
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     //Add 'implements AfterViewInit' to the class.
     setTimeout(() => {
-      this.loading = this.loadingS.loadingStop();
+      this.loading = false;
     }, 2000);
   }
 

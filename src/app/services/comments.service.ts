@@ -1,7 +1,6 @@
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { QueryDocumentSnapshot } from 'firebase/firestore';
 import { ToastrService } from 'ngx-toastr';
-import { Subscriber } from '../models/subscriber';
 import { DocumentData } from '@firebase/firestore-types';
 import { map } from 'rxjs';
 import { Injectable } from '@angular/core';

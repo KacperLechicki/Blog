@@ -3,10 +3,9 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { QueryDocumentSnapshot } from 'firebase/firestore';
 import { ToastrService } from 'ngx-toastr';
-import { map, Observable } from 'rxjs';
+import { map } from 'rxjs';
 import { DocumentData } from '@firebase/firestore-types';
 import { Router } from '@angular/router';
-import * as firestore from '@angular/fire/compat/firestore';
 import { CommentsService } from './comments.service';
 @Injectable({
   providedIn: 'root',

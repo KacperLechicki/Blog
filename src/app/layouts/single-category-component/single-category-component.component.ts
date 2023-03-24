@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { LoadingService } from 'src/app/services/loading.service';
 import { PostsService } from 'src/app/services/posts.service';
 
 @Component({
@@ -15,13 +14,12 @@ export class SingleCategoryComponent {
   constructor(
     private route: ActivatedRoute,
     private postService: PostsService,
-    private loadingS: LoadingService
   ) {}
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-    this.loading = this.loadingS.loadingStart();
+    this.loading = true;
     this.route.params.subscribe((val) => {
       this.postService.loadCategoryPosts(val['id']).subscribe((post: any) => {
         this.postArray = post;
@@ -33,7 +31,7 @@ export class SingleCategoryComponent {
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     //Add 'implements AfterViewInit' to the class.
     setTimeout(() => {
-      this.loading = this.loadingS.loadingStop();
+      this.loading = false;
     }, 1000);
   }
 

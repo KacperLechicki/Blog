@@ -2,11 +2,9 @@ import { Component } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
-  FormsModule,
   Validators,
 } from '@angular/forms';
 import { Subscriber } from 'src/app/models/subscriber';
-import { LoadingService } from 'src/app/services/loading.service';
 import { SubscribersService } from 'src/app/services/subscribers.service';
 
 @Component({
@@ -21,7 +19,6 @@ export class SubscriptionFormComponent {
   constructor(
     private formBuilder: FormBuilder,
     private subService: SubscribersService,
-    private loadingS: LoadingService
   ) {}
 
   ngOnInit(): void {
@@ -40,10 +37,10 @@ export class SubscriptionFormComponent {
       createdAt: new Date()
     }
     if (this.subscriptionForm.valid) {
-      this.loading = this.loadingS.loadingStart();
+      this.loading = true;
       this.subService.saveData(subData);
       setTimeout(() => {
-        this.loading = this.loadingS.loadingStop();
+        this.loading = false;
       }, 1000);
       this.subscriptionForm.reset();
     }

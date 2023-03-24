@@ -1,6 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommentsService } from 'src/app/services/comments.service';
-import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-comments',
@@ -12,7 +11,6 @@ export class CommentsComponent {
   loading: boolean = false;
 
   constructor(
-    private loadingS: LoadingService,
     private comService: CommentsService
   ) {}
 
@@ -20,7 +18,7 @@ export class CommentsComponent {
     // Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     // Add 'implements OnInit' to the class.
     window.scrollTo(0, 0);
-    this.loading = this.loadingS.loadingStart();
+    this.loading = true;
     this.comService.loadData().subscribe((val: any) => {
       this.commentsArray = val;
     });
@@ -30,16 +28,16 @@ export class CommentsComponent {
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     //Add 'implements AfterViewInit' to the class.
     setTimeout(() => {
-      this.loading = this.loadingS.loadingStop();
+      this.loading = false;
     }, 1000);
   }
 
-  onDelete(id:string): void {
+  onDelete(id: string): void {
     window.scrollTo(0, 0);
-    this.loading = this.loadingS.loadingStart();
+    this.loading = true;
     setTimeout(() => {
       this.comService.deleteData(id);
-      this.loading = this.loadingS.loadingStop();
+      this.loading = false;
     }, 1000);
   }
 

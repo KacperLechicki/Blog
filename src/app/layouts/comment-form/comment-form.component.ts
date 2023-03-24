@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Comment } from 'src/app/models/comment';
 import { CommentsService } from 'src/app/services/comments.service';
-import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-comment-form',
@@ -17,7 +16,6 @@ export class CommentFormComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private loadingS: LoadingService,
     private comService: CommentsService,
     private route: ActivatedRoute
   ) {}
@@ -44,11 +42,11 @@ export class CommentFormComponent {
       postID: this.postID
     };
     if (this.commentForm.valid) {
-      this.loading = this.loadingS.loadingStart();
+      this.loading = true;
       this.comService.saveData(comData);
       console.log(this.postID);
       setTimeout(() => {
-        this.loading = this.loadingS.loadingStop();
+        this.loading = false;
       }, 1000);
       this.commentForm.reset();
     }

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { CommentsService } from 'src/app/services/comments.service';
-import { LoadingService } from 'src/app/services/loading.service';
 import { PostsService } from 'src/app/services/posts.service';
 
 @Component({
@@ -14,7 +13,6 @@ export class AllPostsComponent {
 
   constructor(
     private postService: PostsService,
-    private loadingS: LoadingService,
     private comService: CommentsService
   ) {}
 
@@ -22,7 +20,7 @@ export class AllPostsComponent {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     window.scrollTo(0, 0);
-    this.loading = this.loadingS.loadingStart();
+    this.loading = true;
     this.postService.loadData().subscribe((val: any) => {
       this.postArray = val;
     });
@@ -32,16 +30,16 @@ export class AllPostsComponent {
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     //Add 'implements AfterViewInit' to the class.
     setTimeout(() => {
-      this.loading = this.loadingS.loadingStop();
+      this.loading = false;
     }, 1000);
   }
 
   onDelete(postImgPath: any, id: string): void {
-    this.loading = this.loadingS.loadingStart();
+    this.loading = true;
     setTimeout(() => {
       this.postService.deleteImg(postImgPath, id);
       this.comService.deleteSpecificData(id);
-      this.loading = this.loadingS.loadingStop();
+      this.loading = false;
     }, 1000);
   }
 

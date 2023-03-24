@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { CategoriesService } from 'src/app/services/categories.service';
-import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-category-nav',
@@ -13,11 +12,10 @@ export class CategoryNavComponent {
 
   constructor(
     private categoriesService: CategoriesService,
-    private loadingS: LoadingService
   ) {}
 
   ngOnInit(): void {
-    this.loading = this.loadingS.loadingStart();
+    this.loading = true;
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     this.categoriesService.loadData().subscribe((val: any) => {
@@ -29,7 +27,7 @@ export class CategoryNavComponent {
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     //Add 'implements AfterViewInit' to the class.
     setTimeout(() => {
-      this.loading = this.loadingS.loadingStop();
+      this.loading = false;
     }, 1000);
   }
 }

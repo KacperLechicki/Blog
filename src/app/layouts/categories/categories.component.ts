@@ -1,13 +1,7 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import {
-  DocumentReference,
-  AngularFirestore,
-} from '@angular/fire/compat/firestore';
-import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Category } from 'src/app/models/category';
 import { CategoriesService } from 'src/app/services/categories.service';
-import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-categories',
@@ -26,14 +20,13 @@ export class CategoriesComponent {
   constructor(
     private categoriesService: CategoriesService,
     private formBuilder: FormBuilder,
-    private loadingS: LoadingService
   ) {}
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     window.scrollTo(0, 0);
-    this.loading = this.loadingS.loadingStart();
+    this.loading = true;
 
     this.categoryForm = this.formBuilder.group({
       category: ['', Validators.required],
@@ -48,7 +41,7 @@ export class CategoriesComponent {
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     //Add 'implements AfterViewInit' to the class.
     setTimeout(() => {
-      this.loading = this.loadingS.loadingStop();
+      this.loading = false;
     }, 1000);
   }
 
@@ -61,20 +54,20 @@ export class CategoriesComponent {
     ) {
       window.scrollTo(0, 0);
       if (this.formStatus === 'Add') {
-        this.loading = this.loadingS.loadingStart();
+        this.loading = true;
         setTimeout(() => {
           this.categoriesService.saveData(categoryData);
           this.submitTry = false;
-          this.loading = this.loadingS.loadingStop();
+          this.loading = false;
         }, 1000);
         this.categoryForm.reset();
       } else {
-        this.loading = this.loadingS.loadingStart();
+        this.loading = true;
         this.formStatus = 'Add';
         setTimeout(() => {
           this.categoriesService.updateData(this.categoryId, categoryData);
           this.submitTry = false;
-          this.loading = this.loadingS.loadingStop();
+          this.loading = false;
         }, 1000);
         this.categoryForm.reset();
       }
@@ -91,10 +84,10 @@ export class CategoriesComponent {
 
   onDelete(id: string): void {
     window.scrollTo(0, 0);
-    this.loading = this.loadingS.loadingStart();
+    this.loading = true;
     setTimeout(() => {
       this.categoriesService.deleteData(id);
-      this.loading = this.loadingS.loadingStop();
+      this.loading = false;
     }, 1000);
   }
 

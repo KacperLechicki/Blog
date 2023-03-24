@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
-import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-login',
@@ -14,21 +12,13 @@ export class LoginComponent {
   loginForm!: FormGroup;
   submitTry: boolean = false;
 
-  constructor(
-    private loadingS: LoadingService,
-    private formBuilder: FormBuilder,
-    private auth: AuthService,
-    private router: Router
-  ) {}
+  constructor(private formBuilder: FormBuilder, private auth: AuthService) {}
 
   ngOnInit(): void {
-    this.loading = this.loadingS.loadingStart();
+    this.loading = true;
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     window.scrollTo(0, 0);
-    setTimeout(() => {
-      this.loading = this.loadingS.loadingStop();
-    }, 1000);
 
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -36,16 +26,26 @@ export class LoginComponent {
     });
   }
 
+  ngAfterViewInit(): void {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
+    setTimeout(() => {
+      this.loading = false;
+    }, 1000);
+  }
+
   onSubmit(): void {
+    this.loading = true;
     if (this.loginForm.valid) {
       this.submitTry = false;
-      this.loading = this.loadingS.loadingStart();
       this.auth.login(
         this.loginForm.controls['email'].value,
         this.loginForm.controls['password'].value
       );
+      this.loading = false;
     } else {
       this.submitTry = true;
+      this.loading = false;
     }
   }
 }

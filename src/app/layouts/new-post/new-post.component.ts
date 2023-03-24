@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
-import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from 'src/app/models/post';
 import { CategoriesService } from 'src/app/services/categories.service';
-import { LoadingService } from 'src/app/services/loading.service';
 import { PostsService } from 'src/app/services/posts.service';
 
 @Component({
@@ -26,14 +24,12 @@ export class NewPostComponent {
 
   constructor(
     private categoriesService: CategoriesService,
-    private loadingS: LoadingService,
     private formBuilder: FormBuilder,
     private postService: PostsService,
     private route: ActivatedRoute,
     private router: Router,
-    private storage: AngularFireStorage
   ) {
-    this.loading = this.loadingS.loadingStart();
+    this.loading = true;
     this.route.queryParams.subscribe((val) => {
       this.postService.loadPostToEdit(val['id']).subscribe((post: any) => {
         this.docID = val['id'];
@@ -64,7 +60,7 @@ export class NewPostComponent {
           });
         }
         setTimeout(() => {
-          this.loading = this.loadingS.loadingStop();
+          this.loading = false;
         }, 1000);
       });
     });
@@ -74,7 +70,7 @@ export class NewPostComponent {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     window.scrollTo(0, 0);
-    this.loading = this.loadingS.loadingStart();
+    this.loading = true;
     this.categoriesService.loadData().subscribe((val: any) => {
       this.categoryArray = val;
     });
@@ -84,7 +80,7 @@ export class NewPostComponent {
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     //Add 'implements AfterViewInit' to the class.
     setTimeout(() => {
-      this.loading = this.loadingS.loadingStop();
+      this.loading = false;
     }, 1000);
   }
 
@@ -95,7 +91,7 @@ export class NewPostComponent {
 
   showPreview($event: any): void {
     const reader = new FileReader();
-    this.loading = this.loadingS.loadingStart();
+    this.loading = true;
     reader.onload = (e: any) => {
       this.imgSrc = e.target.result;
     };
@@ -104,7 +100,7 @@ export class NewPostComponent {
     this.selectedImg = $event.target.files[0];
 
     setTimeout(() => {
-      this.loading = this.loadingS.loadingStop();
+      this.loading = false;
     }, 1000);
   }
 

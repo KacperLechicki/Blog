@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,10 +8,10 @@ import { LoadingService } from 'src/app/services/loading.service';
 export class DashboardComponent {
   loading: boolean = false;
 
-  constructor(private loadingS: LoadingService) {}
+  constructor() {}
 
   ngOnInit(): void {
-    this.loading = this.loadingS.loadingStart();
+    this.loading = true;
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     window.scrollTo(0, 0);
@@ -22,7 +21,7 @@ export class DashboardComponent {
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     //Add 'implements AfterViewInit' to the class.
     setTimeout(() => {
-      this.loading = this.loadingS.loadingStop();
+      this.loading = false;
     }, 1000);
   }
 }
