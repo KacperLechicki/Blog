@@ -1,11 +1,10 @@
 .container {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   flex-wrap: wrap;
-  gap: 30px;
   margin-bottom: 50px;
   width: 100%;
-  flex: 0;
+  gap: 30px;
 
   app-post-card {
     height: 100%;
@@ -41,6 +40,19 @@
     justify-content: space-between;
 
     app-post-card {
+      &:last-child {
+        display: flex;
+        justify-content: flex-start;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .container {
+    app-post-card {
+      justify-content: center;
+
       &:last-child {
         flex: 1;
       }
