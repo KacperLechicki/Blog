@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, DoCheck } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { CommentsService } from 'src/app/services/comments.service';
 
 @Component({
@@ -7,14 +7,15 @@ import { CommentsService } from 'src/app/services/comments.service';
   templateUrl: './comment-list.component.html',
   styleUrls: ['./comment-list.component.scss'],
 })
-export class CommentListComponent {
+export class CommentListComponent implements DoCheck {
   commentsArray: any = [];
   loading: boolean = false;
   postID!: string;
 
   constructor(
     private comService: CommentsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
   ngOnInit(): void {
     // Called after the constructor, initializing input properties, and the first call to ngOnChanges.
@@ -26,6 +27,22 @@ export class CommentListComponent {
     }
     this.comService.getComments(this.postID).subscribe((val) => {
       this.commentsArray = val;
+    });
+  }
+
+  ngDoCheck(): void {
+    //Called every time that the input properties of a component or a directive are checked. Use it to extend change detection by performing a custom check.
+    //Add 'implements DoCheck' to the class.
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        const params = this.route.snapshot.params;
+        if (params && params['id']) {
+          this.postID = params['id'];
+        }
+        this.comService.getComments(this.postID).subscribe((val) => {
+          this.commentsArray = val;
+        });
+      }
     });
   }
 }

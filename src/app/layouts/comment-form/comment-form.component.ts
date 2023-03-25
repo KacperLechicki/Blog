@@ -44,7 +44,6 @@ export class CommentFormComponent {
     if (this.commentForm.valid) {
       this.loading = true;
       this.comService.saveData(comData);
-      console.log(this.postID);
       setTimeout(() => {
         this.loading = false;
       }, 1000);

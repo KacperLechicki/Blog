@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, ViewChild } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { PostsService } from 'src/app/services/posts.service';
 
 @Component({
@@ -13,9 +13,12 @@ export class SinglePostComponent {
   similarPostArray: any[] = [];
   postID!: string;
 
+  @ViewChild('commentlist') commentList: any;
+
   constructor(
     private postService: PostsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -28,11 +31,12 @@ export class SinglePostComponent {
         this.postData = post;
         this.loadSimilarPost(this.postData.category.idID);
       });
-      const params = this.route.snapshot.params;
-      if (params && params['id']) {
-        this.postID = params['id'];
-      }
     });
+
+    const params = this.route.snapshot.params;
+    if (params && params['id']) {
+      this.postID = params['id'];
+    }
   }
 
   ngAfterViewInit(): void {
