@@ -9,17 +9,16 @@ import { PostsService } from 'src/app/services/posts.service';
 export class PostComponent {
   loading: boolean = false;
   postArray: any[] = [];
+  loadData: any;
 
-  constructor(
-    private postService: PostsService
-  ) {}
+  constructor(private postService: PostsService) {}
 
   ngOnInit(): void {
     this.loading = true;
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     window.scrollTo(0, 0);
-    this.postService.loadData().subscribe((val: any) => {
+    this.loadData = this.postService.loadData().subscribe((val: any) => {
       this.postArray = val;
     });
   }
@@ -30,6 +29,12 @@ export class PostComponent {
     setTimeout(() => {
       this.loading = false;
     }, 1000);
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this.loadData.unsubscribe();
   }
 
   moveUp(): void {

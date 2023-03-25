@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from 'src/app/models/post';
@@ -21,16 +21,20 @@ export class NewPostComponent {
   post: any;
   formStatus: string = 'Add new';
   docID: string = '';
+  routerParams: any;
+  loadData: any;
+
+  @ViewChild('post') postComponent: any;
 
   constructor(
     private categoriesService: CategoriesService,
     private formBuilder: FormBuilder,
     private postService: PostsService,
     private route: ActivatedRoute,
-    private router: Router,
+    private router: Router
   ) {
     this.loading = true;
-    this.route.queryParams.subscribe((val) => {
+    this.routerParams = this.route.queryParams.subscribe((val) => {
       this.postService.loadPostToEdit(val['id']).subscribe((post: any) => {
         this.docID = val['id'];
         this.post = post;
@@ -70,7 +74,7 @@ export class NewPostComponent {
     //Add 'implements OnInit' to the class.
     window.scrollTo(0, 0);
     this.loading = true;
-    this.categoriesService.loadData().subscribe((val: any) => {
+    this.loadData = this.categoriesService.loadData().subscribe((val: any) => {
       this.categoryArray = val;
     });
   }
@@ -81,6 +85,13 @@ export class NewPostComponent {
     setTimeout(() => {
       this.loading = false;
     }, 1000);
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this.routerParams.unsubscribe();
+    this.loadData.unsubscribe();
   }
 
   onTitleChange($event: any): void {
@@ -135,6 +146,7 @@ export class NewPostComponent {
         this.submitTry = false;
       }, 1000);
       this.postForm.reset();
+      this.postComponent.reload();
       this.router.navigate(['/allPosts']);
     } else {
       window.scrollTo(0, 0);

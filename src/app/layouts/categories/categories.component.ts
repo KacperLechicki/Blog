@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Category } from 'src/app/models/category';
 import { CategoriesService } from 'src/app/services/categories.service';
@@ -16,6 +16,9 @@ export class CategoriesComponent {
   categoryId!: string;
   loading: boolean = false;
   submitTry: boolean = false;
+  loadData: any;
+
+  @ViewChild('categoryFormAd') categoryComponent: any;
 
   constructor(
     private categoriesService: CategoriesService,
@@ -32,7 +35,7 @@ export class CategoriesComponent {
       category: ['', Validators.required],
     });
 
-    this.categoriesService.loadData().subscribe((val: any) => {
+    this.loadData = this.categoriesService.loadData().subscribe((val: any) => {
       this.categoryArray = val;
     });
   }
@@ -43,6 +46,12 @@ export class CategoriesComponent {
     setTimeout(() => {
       this.loading = false;
     }, 1000);
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this.loadData.unsubscribe();
   }
 
   onSubmit(): void {
@@ -61,6 +70,7 @@ export class CategoriesComponent {
           this.loading = false;
         }, 1000);
         this.categoryForm.reset();
+        this.categoryComponent.reload();
       } else {
         this.loading = true;
         this.formStatus = 'Add';
@@ -70,6 +80,7 @@ export class CategoriesComponent {
           this.loading = false;
         }, 1000);
         this.categoryForm.reset();
+        this.categoryComponent.reload();
       }
     } else {
       this.submitTry = true;

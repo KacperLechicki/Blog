@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -15,6 +15,8 @@ import { SubscribersService } from 'src/app/services/subscribers.service';
 export class SubscriptionFormComponent {
   subscriptionForm!: FormGroup;
   loading: boolean = false;
+
+  @ViewChild('subscription') subscriptionComponent: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -43,6 +45,7 @@ export class SubscriptionFormComponent {
         this.loading = false;
       }, 1000);
       this.subscriptionForm.reset();
+      this.subscriptionComponent.reload();
     }
   }
 }

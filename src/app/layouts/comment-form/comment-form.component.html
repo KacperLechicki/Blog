@@ -4,7 +4,7 @@
       <h3>Leave a Comment</h3>
       <hr>
 
-      <form action="" class="subscription-form" [formGroup]="commentForm">
+      <form action="" class="subscription-form" [formGroup]="commentForm" #comment>
         <mat-form-field class="mb-3 comment-form-field" appearance="outline">
           <mat-label>Name</mat-label>
           <input formControlName="name" matInput name="name" type="text">

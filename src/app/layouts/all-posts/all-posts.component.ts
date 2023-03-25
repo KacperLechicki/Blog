@@ -10,6 +10,7 @@ import { PostsService } from 'src/app/services/posts.service';
 export class AllPostsComponent {
   postArray: any[] = [];
   loading: boolean = false;
+  loadData: any;
 
   constructor(
     private postService: PostsService,
@@ -21,7 +22,7 @@ export class AllPostsComponent {
     //Add 'implements OnInit' to the class.
     window.scrollTo(0, 0);
     this.loading = true;
-    this.postService.loadData().subscribe((val: any) => {
+    this.loadData = this.postService.loadData().subscribe((val: any) => {
       this.postArray = val;
     });
   }
@@ -34,6 +35,11 @@ export class AllPostsComponent {
     }, 1000);
   }
 
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this.loadData.unsubscribe();
+  }
 
   onDelete(postImgPath: any, id: string): void {
     this.loading = true;

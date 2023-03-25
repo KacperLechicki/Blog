@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Comment } from 'src/app/models/comment';
@@ -13,6 +13,8 @@ export class CommentFormComponent {
   commentForm!: FormGroup;
   loading: boolean = false;
   postID!: string;
+
+  @ViewChild('comment') commentComponent: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -48,6 +50,7 @@ export class CommentFormComponent {
         this.loading = false;
       }, 1000);
       this.commentForm.reset();
+      this.commentComponent.reload();
     }
   }
 }

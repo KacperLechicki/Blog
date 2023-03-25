@@ -9,17 +9,16 @@ import { SubscribersService } from 'src/app/services/subscribers.service';
 export class SubscribersComponent {
   subscribersArray: any = [];
   loading: boolean = false;
+  loadData: any;
 
-  constructor(
-    private subService: SubscribersService,
-  ) {}
+  constructor(private subService: SubscribersService) {}
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     window.scrollTo(0, 0);
     this.loading = true;
-    this.subService.loadData().subscribe((val: any) => {
+    this.loadData = this.subService.loadData().subscribe((val: any) => {
       this.subscribersArray = val;
     });
   }
@@ -32,7 +31,13 @@ export class SubscribersComponent {
     }, 2000);
   }
 
-  onDelete(id:string):void {
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this.loadData.unsubscribe();
+  }
+
+  onDelete(id: string): void {
     this.loading = true;
     setTimeout(() => {
       this.subService.deleteData(id);

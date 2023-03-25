@@ -12,11 +12,12 @@ export class FooterComponent {
   hostElement = this.elRef.nativeElement;
 
   actualYear: number = new Date().getFullYear();
+  routerEvents: any;
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-    this.router.events.subscribe((event) => {
+    this.routerEvents = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         if (event.url == '/') {
           window.scrollTo(0, 0);
@@ -27,5 +28,11 @@ export class FooterComponent {
         }
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this.routerEvents.unsubscribe();
   }
 }

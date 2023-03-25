@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { PostsService } from 'src/app/services/posts.service';
 
 @Component({
@@ -12,13 +12,13 @@ export class SinglePostComponent {
   postData: any;
   similarPostArray: any[] = [];
   postID!: string;
+  routerParams: any;
 
   @ViewChild('commentlist') commentList: any;
 
   constructor(
     private postService: PostsService,
-    private route: ActivatedRoute,
-    private router: Router
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -26,7 +26,7 @@ export class SinglePostComponent {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     window.scrollTo(0, 0);
-    this.route.params.subscribe((data: any) => {
+    this.routerParams = this.route.params.subscribe((data: any) => {
       this.postService.loadOnePost(data['id']).subscribe((post: any) => {
         this.postData = post;
         this.loadSimilarPost(this.postData.category.idID);
@@ -45,6 +45,12 @@ export class SinglePostComponent {
     setTimeout(() => {
       this.loading = false;
     }, 2000);
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this.routerParams.unsubscribe();
   }
 
   loadSimilarPost(catID: any) {

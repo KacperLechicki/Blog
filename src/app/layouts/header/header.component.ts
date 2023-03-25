@@ -8,13 +8,14 @@ import { NavigationEnd, Router } from '@angular/router';
 })
 export class HeaderComponent {
   isLandingPage: boolean = false;
+  routerEvents: any;
 
   constructor(private router: Router, private elRef: ElementRef) {}
 
   ngOnInit() {
     const hostElement = this.elRef.nativeElement;
 
-    this.router.events.subscribe((event) => {
+    this.routerEvents = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         if (event.url == '/') {
           window.scrollTo(0, 0);
@@ -26,5 +27,11 @@ export class HeaderComponent {
         }
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this.routerEvents.unsubscribe();
   }
 }

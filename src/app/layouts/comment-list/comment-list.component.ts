@@ -11,6 +11,9 @@ export class CommentListComponent implements DoCheck {
   commentsArray: any = [];
   loading: boolean = false;
   postID!: string;
+  getComments: any;
+  routerEvents: any;
+  getCommentsRouter: any;
 
   constructor(
     private comService: CommentsService,
@@ -25,24 +28,33 @@ export class CommentListComponent implements DoCheck {
     if (params && params['id']) {
       this.postID = params['id'];
     }
-    this.comService.getComments(this.postID).subscribe((val) => {
-      this.commentsArray = val;
-    });
+    this.getComments = this.comService
+      .getComments(this.postID)
+      .subscribe((val) => {
+        this.commentsArray = val;
+      });
   }
 
   ngDoCheck(): void {
     //Called every time that the input properties of a component or a directive are checked. Use it to extend change detection by performing a custom check.
     //Add 'implements DoCheck' to the class.
-    this.router.events.subscribe((event) => {
+    this.routerEvents = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         const params = this.route.snapshot.params;
         if (params && params['id']) {
           this.postID = params['id'];
         }
-        this.comService.getComments(this.postID).subscribe((val) => {
-          this.commentsArray = val;
-        });
+        this.getCommentsRouter = this.comService
+          .getComments(this.postID)
+          .subscribe((val) => {
+            this.commentsArray = val;
+          });
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
   }
 }

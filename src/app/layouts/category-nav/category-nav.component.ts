@@ -9,16 +9,15 @@ import { CategoriesService } from 'src/app/services/categories.service';
 export class CategoryNavComponent {
   categoryArray: any[] = [];
   loading: boolean = false;
+  loadData: any;
 
-  constructor(
-    private categoriesService: CategoriesService,
-  ) {}
+  constructor(private categoriesService: CategoriesService) {}
 
   ngOnInit(): void {
     this.loading = true;
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-    this.categoriesService.loadData().subscribe((val: any) => {
+    this.loadData = this.categoriesService.loadData().subscribe((val: any) => {
       this.categoryArray = val;
     });
   }
@@ -29,5 +28,11 @@ export class CategoryNavComponent {
     setTimeout(() => {
       this.loading = false;
     }, 1000);
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this.loadData.unsubscribe();
   }
 }
