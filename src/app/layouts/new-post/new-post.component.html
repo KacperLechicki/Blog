@@ -63,8 +63,8 @@
                         [ngClass]="{'imgInvalid': postForm.controls['image'].hasError('required') && submitTry}">
                         <label class="fileLabel" for="image">Post Image</label>
                         <img [src]="imgSrc" class="formc-control img-fluid img-preview">
-                        <input formControlName="image" name="image" type="file" class="fileInput" accept="image/*"
-                          (change)="showPreview($event)">
+                        <input #imageFile formControlName="image" name="image" type="file" class="fileInput"
+                          accept="image/*" (change)="showPreview($event)">
                       </div>
                       <small class="mt-2 errorMsg"
                         *ngIf="postForm.controls['image'].hasError('required') && submitTry">This field is

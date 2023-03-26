@@ -35,6 +35,7 @@ export class LoginComponent {
   }
 
   onSubmit(): void {
+    this.loading = true;
     if (this.loginForm.valid) {
       this.submitTry = false;
       this.auth.login(
@@ -44,5 +45,8 @@ export class LoginComponent {
     } else {
       this.submitTry = true;
     }
+    setTimeout(() => {
+      this.loading = false;
+    }, 1000);
   }
 }

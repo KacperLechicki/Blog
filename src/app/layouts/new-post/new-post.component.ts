@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from 'src/app/models/post';
@@ -25,13 +26,15 @@ export class NewPostComponent {
   loadData: any;
 
   @ViewChild('post') postComponent: any;
+  @ViewChild('imageFile') fileInput!: any;
 
   constructor(
     private categoriesService: CategoriesService,
     private formBuilder: FormBuilder,
     private postService: PostsService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private storage: AngularFireStorage
   ) {
     this.loading = true;
     this.routerParams = this.route.queryParams.subscribe((val) => {
@@ -39,7 +42,7 @@ export class NewPostComponent {
         this.docID = val['id'];
         this.post = post;
         if (this.docID) {
-          // this.imgSrc = this.post.postImgPath;
+          this.permalink = this.post.permalink;
           this.postForm = this.formBuilder.group({
             title: [this.post.title, Validators.required],
             permalink: [this.post.permalink, Validators.required],
@@ -51,6 +54,7 @@ export class NewPostComponent {
             image: ['', Validators.required],
             content: [this.post.content, Validators.required],
           });
+          this.imgSrc = this.post.postImgPath;
           this.formStatus = 'Edit';
         } else {
           this.postForm = this.formBuilder.group({
@@ -108,6 +112,7 @@ export class NewPostComponent {
 
     reader.readAsDataURL($event.target.files[0]);
     this.selectedImg = $event.target.files[0];
+    console.log(this.selectedImg);
 
     setTimeout(() => {
       this.loading = false;
