@@ -25,7 +25,7 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
 import { ToastrModule } from 'ngx-toastr';
 
-import { NgxLoadingModule } from 'ngx-loading';
+import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
 import { CategoryNavComponent } from './layouts/category-nav/category-nav.component';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { PostCardComponent } from './layouts/post-card/post-card.component';
@@ -79,6 +79,7 @@ import { CommentsComponent } from './layouts/comments/comments.component';
       tertiaryColour: 'hsl(224, 67%, 63%)',
       backdropBackgroundColour: 'rgba(0,0,0,0.1)',
       fullScreenBackdrop: true,
+      animationType: ngxLoadingAnimationTypes.threeBounce
     }),
     MatChipsModule,
     MatCardModule,

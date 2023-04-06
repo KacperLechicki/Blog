@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { PostsService } from 'src/app/services/posts.service';
 
 @Component({
@@ -13,6 +14,7 @@ export class SinglePostComponent {
   similarPostArray: any[] = [];
   postID!: string;
   routerParams: any;
+  similarSub!: Subscription;
 
   @ViewChild('commentlist') commentList: any;
 
@@ -45,12 +47,15 @@ export class SinglePostComponent {
 
   ngOnDestroy(): void {
     this.routerParams.unsubscribe();
+    this.similarSub.unsubscribe();
   }
 
   loadSimilarPost(catID: any) {
-    this.postService.loadSimilar(catID).subscribe((val: any) => {
-      this.similarPostArray = val;
-    });
+    this.similarSub = this.postService
+      .loadSimilar(catID)
+      .subscribe((val: any) => {
+        this.similarPostArray = val;
+      });
   }
 
   moveUp(): void {
