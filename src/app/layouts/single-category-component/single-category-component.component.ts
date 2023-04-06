@@ -26,6 +26,12 @@ export class SingleCategoryComponent {
     });
   }
 
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      this.loading = false;
+    }, 2000);
+  }
+
   ngOnDestroy(): void {
     this.routerParams.unsubscribe();
   }
