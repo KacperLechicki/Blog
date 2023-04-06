@@ -86,7 +86,7 @@
                       required</small>
                   </div>
 
-                  <button mat-stroked-button class="sub_btn mt-5 mb-0" (click)="onSubmit()">Save Post</button>
+                  <button mat-stroked-button class="sub_btn mt-5 mb-0" (click)="onSubmit()" [routerLink]="['/allPosts']" routerLinkActive="router-link-active" >Save Post</button>
                 </div>
               </div>
             </form>

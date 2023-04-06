@@ -6,7 +6,6 @@ import { ToastrService } from 'ngx-toastr';
 import { map } from 'rxjs';
 import { DocumentData } from '@firebase/firestore-types';
 import { Router } from '@angular/router';
-import { CommentsService } from './comments.service';
 @Injectable({
   providedIn: 'root',
 })
@@ -16,7 +15,6 @@ export class PostsService {
     private fs: AngularFirestore,
     private toastr: ToastrService,
     private router: Router,
-    private comService: CommentsService
   ) {}
 
   uploadImage(
@@ -50,7 +48,7 @@ export class PostsService {
     this.fs
       .collection('posts')
       .add(postData)
-      .then((docRef) => {
+      .then(() => {
         this.toastr.success('Data inserted successfully');
       });
   }
@@ -99,7 +97,7 @@ export class PostsService {
       .collection('posts')
       .doc(id)
       .delete()
-      .then((docRef) => {
+      .then(() => {
         this.toastr.success('Data deleted successfully');
       });
   }

@@ -23,8 +23,6 @@ export class CommentFormComponent {
   ) {}
 
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
     this.commentForm = this.formBuilder.group({
       name: ['', Validators.required],
       comment: ['', Validators.required],

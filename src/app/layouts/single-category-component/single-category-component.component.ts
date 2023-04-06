@@ -14,12 +14,11 @@ export class SingleCategoryComponent {
 
   constructor(
     private route: ActivatedRoute,
-    private postService: PostsService
+    private postService: PostsService,
   ) {}
 
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
+    this.loading = true;
     this.routerParams = this.route.params.subscribe((val) => {
       this.postService.loadCategoryPosts(val['id']).subscribe((post: any) => {
         this.postArray = post;
@@ -28,8 +27,6 @@ export class SingleCategoryComponent {
   }
 
   ngOnDestroy(): void {
-    //Called once, before the instance is destroyed.
-    //Add 'implements OnDestroy' to the class.
     this.routerParams.unsubscribe();
   }
 

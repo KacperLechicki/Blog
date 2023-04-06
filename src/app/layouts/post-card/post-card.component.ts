@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { PostComponent } from '../post/post.component';
+import { SingleCategoryComponent } from '../single-category-component/single-category-component.component';
 
 @Component({
   selector: 'app-post-card',
@@ -6,23 +8,24 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./post-card.component.scss'],
 })
 export class PostCardComponent {
-  loading:boolean = false;
+  loading: boolean = false;
 
   @Input() postData!: any;
 
-  constructor() {}
+  constructor(
+    private postAgent: PostComponent,
+    private categoryAgent: SingleCategoryComponent
+  ) {}
 
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
     this.loading = true;
   }
 
   ngAfterViewInit(): void {
-    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
-    //Add 'implements AfterViewInit' to the class.
     setTimeout(() => {
+      this.postAgent.loading = false;
+      this.categoryAgent.loading = false;
       this.loading = false;
-    })
+    }, 1000);
   }
 }

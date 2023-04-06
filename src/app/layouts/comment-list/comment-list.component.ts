@@ -21,8 +21,6 @@ export class CommentListComponent implements DoCheck {
     private router: Router
   ) {}
   ngOnInit(): void {
-    // Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    // Add 'implements OnInit' to the class.
     window.scrollTo(0, 0);
     const params = this.route.snapshot.params;
     if (params && params['id']) {
@@ -36,8 +34,6 @@ export class CommentListComponent implements DoCheck {
   }
 
   ngDoCheck(): void {
-    //Called every time that the input properties of a component or a directive are checked. Use it to extend change detection by performing a custom check.
-    //Add 'implements DoCheck' to the class.
     this.routerEvents = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         const params = this.route.snapshot.params;
@@ -51,10 +47,5 @@ export class CommentListComponent implements DoCheck {
           });
       }
     });
-  }
-
-  ngOnDestroy(): void {
-    //Called once, before the instance is destroyed.
-    //Add 'implements OnDestroy' to the class.
   }
 }

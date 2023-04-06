@@ -34,7 +34,6 @@ export class NewPostComponent {
     private postService: PostsService,
     private route: ActivatedRoute,
     private router: Router,
-    private storage: AngularFireStorage
   ) {
     this.loading = true;
     this.routerParams = this.route.queryParams.subscribe((val) => {
@@ -74,8 +73,6 @@ export class NewPostComponent {
   }
 
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
     window.scrollTo(0, 0);
     this.loading = true;
     this.loadData = this.categoriesService.loadData().subscribe((val: any) => {
@@ -84,16 +81,12 @@ export class NewPostComponent {
   }
 
   ngAfterViewInit(): void {
-    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
-    //Add 'implements AfterViewInit' to the class.
     setTimeout(() => {
       this.loading = false;
     }, 1000);
   }
 
   ngOnDestroy(): void {
-    //Called once, before the instance is destroyed.
-    //Add 'implements OnDestroy' to the class.
     this.routerParams.unsubscribe();
     this.loadData.unsubscribe();
   }

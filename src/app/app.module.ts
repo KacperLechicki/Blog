@@ -77,7 +77,8 @@ import { CommentsComponent } from './layouts/comments/comments.component';
       primaryColour: 'hsl(224, 67%, 63%)',
       secondaryColour: 'hsl(224, 67%, 63%)',
       tertiaryColour: 'hsl(224, 67%, 63%)',
-      backdropBackgroundColour: 'transparent',
+      backdropBackgroundColour: 'rgba(0,0,0,0.1)',
+      fullScreenBackdrop: true,
     }),
     MatChipsModule,
     MatCardModule,
@@ -96,7 +97,7 @@ import { CommentsComponent } from './layouts/comments/comments.component';
     AngularFireStorageModule,
     AngularFireAuthModule,
   ],
-  providers: [AppComponent],
+  providers: [AppComponent, PostComponent, SingleCategoryComponent, AllPostsComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

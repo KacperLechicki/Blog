@@ -15,8 +15,6 @@ export class FooterComponent {
   routerEvents: any;
 
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
     this.routerEvents = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         if (event.url == '/') {
@@ -31,8 +29,6 @@ export class FooterComponent {
   }
 
   ngOnDestroy(): void {
-    //Called once, before the instance is destroyed.
-    //Add 'implements OnDestroy' to the class.
     this.routerEvents.unsubscribe();
   }
 }

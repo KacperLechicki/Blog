@@ -16,8 +16,6 @@ export class LoginComponent {
 
   ngOnInit(): void {
     this.loading = true;
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
     window.scrollTo(0, 0);
 
     this.loginForm = this.formBuilder.group({
@@ -27,26 +25,24 @@ export class LoginComponent {
   }
 
   ngAfterViewInit(): void {
-    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
-    //Add 'implements AfterViewInit' to the class.
     setTimeout(() => {
       this.loading = false;
     }, 1000);
   }
 
   onSubmit(): void {
-    this.loading = true;
     if (this.loginForm.valid) {
+      this.loading = true;
       this.submitTry = false;
       this.auth.login(
         this.loginForm.controls['email'].value,
         this.loginForm.controls['password'].value
       );
+      setTimeout(() => {
+        this.loading = false;
+      }, 3500);
     } else {
       this.submitTry = true;
     }
-    setTimeout(() => {
-      this.loading = false;
-    }, 1000);
   }
 }

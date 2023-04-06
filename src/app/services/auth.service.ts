@@ -18,7 +18,7 @@ export class AuthService {
   login(email: string, password: string) {
     this.afAuth
       .signInWithEmailAndPassword(email, password)
-      .then((logRef) => {
+      .then(() => {
         this.toastr.success('Logged in successfully');
         this.loadUser();
         this.loginGuard = true;
